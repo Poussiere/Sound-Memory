@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Hello Kotlin</string>
+    <string name="main_text_view_content">Welcome to my first Kotlin app!</string>
+</resources>
