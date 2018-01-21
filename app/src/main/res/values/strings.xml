@@ -2,4 +2,9 @@
     <string name="app_name">Hello Kotlin</string>
     <string name="main_text_view_content">Welcome to my first Kotlin app!</string>
     <string name="play_song">Play song</string>
+    <string name="msg1">This</string>
+    <string name="msg2">is</string>
+    <string name="msg3">reactive</string>
+    <string name="msg4">programming</string>
+    <string name="msg5">RXandroid</string>
 </resources>
