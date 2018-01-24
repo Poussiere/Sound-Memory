@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.poussiere.hellokotlin.utils.Song
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,16 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mainTextView.setText(R.string.main_text_view_content)
 
-
-        val song = Song(this);
-
-        songTextView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                song.play();
-            }
-
-
-        })
+        var cardTab : MutableList<String> = mutableListOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q")
+       var randomCardTab : MutableList<String> =Collections.shuffle(cardTab)
 
     }
 
