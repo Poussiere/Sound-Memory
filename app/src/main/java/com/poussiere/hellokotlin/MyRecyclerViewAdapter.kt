@@ -13,7 +13,15 @@ import kotlinx.android.synthetic.main.recycler_element.view.*
  */
 class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
+    //La liste des cartes récupérée dans le constructeur
     var myCardList : MutableList<Card> = cardList
+
+    //Un int qui va servir à stocker temporairement l'index de la carte précédemment cliquée
+    var tempIndex : Int=1
+
+    //Un boolean qui va indiquer si la carte cliquée est la première ou la deuxième
+    var firstCard : Boolean = true
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
@@ -38,7 +46,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
     }
 
 
-    class MyViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class MyViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
 
        init {
@@ -62,7 +70,12 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
         }
 
         override fun onClick(p0: View?) {
+            var context = itemView.context;
 
+        if (firstCard){
+            itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
+            tempIndex=adapterPosition
+        }
         }
     }
 }
