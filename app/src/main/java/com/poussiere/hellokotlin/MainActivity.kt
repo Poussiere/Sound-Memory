@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mainTextView.setText(R.string.main_text_view_content)
 
+        // retrieve a mutableList of all Cards objects instead
         var cardTab : MutableList<String> = mutableListOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q")
        var randomCardTab : MutableList<String> =Collections.shuffle(cardTab)
 
