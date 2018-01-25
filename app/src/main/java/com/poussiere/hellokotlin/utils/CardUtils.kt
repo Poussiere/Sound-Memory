@@ -8,6 +8,10 @@ import com.poussiere.hellokotlin.data.Card
  */
  class CardUtils{
 
+  //Create a methode that returns a mutableList of the 20 objects + in the data class create a bolean variable to know if the card is discovered or not
+  
+  
+  
 //Methode that determine each id card and song to play
     //There are 2*10 cards.
     fun createCard (id : String): Card? {
