@@ -5,15 +5,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.poussiere.hellokotlin.data.Card
 import kotlinx.android.synthetic.main.recycler_element.view.*
 
 /**
  * Created by poussiere on 21/01/18.
  */
-class MyRecyclerViewAdapter : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
+class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
-    var myCardList=ArrayList<Boolean>(20)
-
+    var myCardList : MutableList<Card> = cardList
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
@@ -29,11 +29,11 @@ class MyRecyclerViewAdapter : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewH
 
     override fun onBindViewHolder(holder: MyViewHolder?, position: Int) {
 
-        var cardIsBlue = myCardList[position]
-        holder?.bindItems(cardIsBlue);
+        var card = myCardList[position]
+        holder?.bindItems(card);
     }
 
-    fun setCardsList (cardList : ArrayList<Boolean>) {
+    fun updateCardsList (cardList : MutableList<Card>) {
     myCardList=cardList
     }
 
@@ -45,16 +45,16 @@ class MyRecyclerViewAdapter : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewH
            itemView?.setOnClickListener(this)
        }
 
-        fun bindItems(cardIsBlue : Boolean) {
+        fun bindItems(card : Card) {
 
             //similar to getContext in java
             var context = itemView.context;
 
-            if (cardIsBlue) {
-                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            if (card.discovered) {
+                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
 
             }else {
-                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
+                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
             }
 
 
