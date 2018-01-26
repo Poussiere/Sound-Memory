@@ -77,6 +77,22 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
             tempIndex=adapterPosition
         }
         }
+        
+        // Cette méthode sera lancée
+        fun doWhenFirstClick(){
+         var context = itemView.context; 
+         itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
+          /* stocker l'index de l'objet card dans un Int temporaire. Agir sur cet objet (ajouter une variable peut être si 
+            discovered est pas suffisante)pour modifier le recyclerivew dans son ensemble en l'updatant. Ainsi, pas 
+            besoin de bidouille pour accéder à une vue depuis une autre vue. 
+        Faire un notifyDataSetChage après chaque clique dans la GameActivity. 
+        */
+        }
+       
+        fun doWhenSecondClick(){
+        
+            
+        }
     }
 }
 
