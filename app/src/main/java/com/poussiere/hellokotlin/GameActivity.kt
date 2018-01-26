@@ -21,8 +21,6 @@ class GameActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_game)
 
-
-
         // retrieve a mutableList of all Cards objects instead
         // var cardTab : MutableList<String> = mutableListOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q")
         var cardTab : MutableList<Card> = CardUtils.initCards()
@@ -30,11 +28,12 @@ class GameActivity : AppCompatActivity() {
 
         //Configure recycler view in GrilLayout
         game_board.setHasFixedSize(true)
-        game_borad.setHasStableIds(true)
         val gridLayoutManager = GridLayoutManager(this@GameActivity, 4) // 3 = number of items on each row
         game_board.setLayoutManager(gridLayoutManager)
         val myRecyclerViewAdapter = MyRecyclerViewAdapter(cardTab)
+        myRecyclerViewAdapter.setHasStableIds(true)
         game_board.setAdapter(myRecyclerViewAdapter)
     }
+
 
 }

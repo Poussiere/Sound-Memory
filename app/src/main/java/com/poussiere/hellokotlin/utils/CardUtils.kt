@@ -28,7 +28,7 @@ import com.poussiere.hellokotlin.data.Card
                 add(Card(2, R.raw.bateau))
                 add(Card(3, R.raw.bateau))
                 add(Card(3, R.raw.bateau))
-                add(Card(4, R.raw.bateau, true))
+                add(Card(4, R.raw.bateau))
                 add(Card(4, R.raw.bateau))
                 add(Card(5, R.raw.bateau))
                 add(Card(5, R.raw.bateau))

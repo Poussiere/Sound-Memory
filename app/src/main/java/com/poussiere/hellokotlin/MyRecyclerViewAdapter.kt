@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.poussiere.hellokotlin.data.Card
+import com.poussiere.hellokotlin.utils.Song
 import kotlinx.android.synthetic.main.recycler_element.view.*
 
 /**
@@ -17,11 +18,21 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
     var myCardList : MutableList<Card> = cardList
 
     //Un int qui va servir à stocker temporairement l'index de la carte précédemment cliquée
-    var tempIndex : Int=1
+    var previousIndex : Int=1
+    var actualIndex : Int=1
 
     //Un boolean qui va indiquer si la carte cliquée est la première ou la deuxième
     var firstCard : Boolean = true
 
+    //Un boolean qui va indiquer si un son est entrain d'être lu
+    var songIsPlaying : Boolean = false
+
+/*
+    interface AdapterOnClickHandler {
+
+        fun doSomethingFromActivityWhenClick(index: Int)
+    }
+    */
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
@@ -35,12 +46,11 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
         return 20;
     }
 
-    //To avoid the blink when recyclerview is refreshing. 
-    @Override
-public long getItemId(int position) {
-    return myCardList.get(position).getId();
-}
-    
+    //To avoid the blink when recyclerview is refreshed
+
+    override fun getItemId(position: Int): Long {
+        return super.getItemId(position)
+    }
     override fun onBindViewHolder(holder: MyViewHolder?, position: Int) {
 
         var card = myCardList[position]
@@ -53,6 +63,10 @@ public long getItemId(int position) {
 
 
     inner class MyViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        //similar to getContext in java
+        var context = itemView?.context;
+
+        var player:Song=Song(context)
 
 
        init {
@@ -61,10 +75,11 @@ public long getItemId(int position) {
 
         fun bindItems(card : Card) {
 
-            //similar to getContext in java
-            var context = itemView.context;
+            if (card.checked){
+                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
+            }
 
-            if (card.discovered) {
+            else if (card.discovered) {
                 itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
 
             }else {
@@ -76,28 +91,67 @@ public long getItemId(int position) {
         }
 
         override fun onClick(p0: View?) {
-            var context = itemView.context;
 
-        if (firstCard){
-            itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
-            tempIndex=adapterPosition
-        }
-        }
+
+
+            // Le clique ne va réagir que si la carte cliquée n'a pas encore été découverte et que si la lecture d'un son n'est pas en cours
+            if (!myCardList[adapterPosition].discovered && !songIsPlaying){
+
+                when (firstCard){
+                    true -> doWhenFirstClick()
+                    false -> doWhenSecondClick()
+                }
+            } }
         
-        // Cette méthode sera lancée
+
         fun doWhenFirstClick(){
-         var context = itemView.context; 
-         itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
-          /* stocker l'index de l'objet card dans un Int temporaire. Agir sur cet objet (ajouter une variable peut être si 
-            discovered est pas suffisante)pour modifier le recyclerivew dans son ensemble en l'updatant. Ainsi, pas 
-            besoin de bidouille pour accéder à une vue depuis une autre vue. 
-        Faire un notifyDataSetChage après chaque clique dans la GameActivity. 
-        */
+
+       //  itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
+            songIsPlaying=true
+            previousIndex=adapterPosition
+            myCardList[previousIndex].checked=true;
+
+
+            player.play(myCardList[previousIndex].song)
+            player.mediaPlayer?.setOnCompletionListener(){
+                songIsPlaying=false
+            }
+
+            firstCard=false
+            notifyDataSetChanged()
+
         }
-       
+
         fun doWhenSecondClick(){
-        
-            
+            songIsPlaying=true
+            actualIndex=adapterPosition
+
+           var cardsAreSimilar : Boolean = false
+
+
+
+            player.play(myCardList[actualIndex].song)
+            player.mediaPlayer?.setOnCompletionListener(){
+                songIsPlaying=false
+            }
+
+            if (myCardList[previousIndex].id == myCardList[actualIndex].id){
+                cardsAreSimilar = true
+            }
+
+
+
+            if (cardsAreSimilar){
+
+                myCardList[previousIndex].discovered=true
+                myCardList[actualIndex].discovered=true}
+
+
+            myCardList[previousIndex].checked=false
+            firstCard=true
+
+            notifyDataSetChanged()
+
         }
     }
 }

@@ -4,12 +4,14 @@
     android:id="@+id/song_card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="1dp">
+    android:layout_margin="2dp"
+ >
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:id="@+id/song_card_image"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        />
 
 </FrameLayout>
