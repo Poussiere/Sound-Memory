@@ -30,6 +30,7 @@ class GameActivity : AppCompatActivity() {
 
         //Configure recycler view in GrilLayout
         game_board.setHasFixedSize(true)
+        game_borad.setHasStableIds(true)
         val gridLayoutManager = GridLayoutManager(this@GameActivity, 4) // 3 = number of items on each row
         game_board.setLayoutManager(gridLayoutManager)
         val myRecyclerViewAdapter = MyRecyclerViewAdapter(cardTab)
