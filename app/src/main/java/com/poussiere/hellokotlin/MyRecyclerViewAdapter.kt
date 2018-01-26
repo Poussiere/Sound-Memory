@@ -106,7 +106,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
 
         fun doWhenFirstClick(){
 
-       //  itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
+       itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
             songIsPlaying=true
             previousIndex=adapterPosition
             myCardList[previousIndex].checked=true;
@@ -115,25 +115,22 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
             player.play(myCardList[previousIndex].song)
             player.mediaPlayer?.setOnCompletionListener(){
                 songIsPlaying=false
+                firstCard=false
+                notifyDataSetChanged()
             }
 
-            firstCard=false
-            notifyDataSetChanged()
+
+
 
         }
 
         fun doWhenSecondClick(){
             songIsPlaying=true
+            itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
             actualIndex=adapterPosition
 
            var cardsAreSimilar : Boolean = false
 
-
-
-            player.play(myCardList[actualIndex].song)
-            player.mediaPlayer?.setOnCompletionListener(){
-                songIsPlaying=false
-            }
 
             if (myCardList[previousIndex].id == myCardList[actualIndex].id){
                 cardsAreSimilar = true
@@ -141,16 +138,20 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
 
 
 
-            if (cardsAreSimilar){
 
-                myCardList[previousIndex].discovered=true
-                myCardList[actualIndex].discovered=true}
+            player.play(myCardList[actualIndex].song)
+            player.mediaPlayer?.setOnCompletionListener(){
+
+                if (cardsAreSimilar){
+                    myCardList[previousIndex].discovered=true
+                    myCardList[actualIndex].discovered=true}
+                songIsPlaying=false
+                myCardList[previousIndex].checked=false
+                firstCard=true
+                notifyDataSetChanged()
+            }
 
 
-            myCardList[previousIndex].checked=false
-            firstCard=true
-
-            notifyDataSetChanged()
 
         }
     }
