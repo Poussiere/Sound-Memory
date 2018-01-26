@@ -35,6 +35,12 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
         return 20;
     }
 
+    //To avoid the blink when recyclerview is refreshing. 
+    @Override
+public long getItemId(int position) {
+    return myCardList.get(position).getId();
+}
+    
     override fun onBindViewHolder(holder: MyViewHolder?, position: Int) {
 
         var card = myCardList[position]
