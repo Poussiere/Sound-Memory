@@ -2,26 +2,40 @@ package com.poussiere.hellokotlin.utils
 
 import android.content.Context
 import android.media.MediaPlayer
-import com.poussiere.hellokotlin.R
+
+
 
 class Song (val context : Context?){
 
-    var mediaPlayer : MediaPlayer?=null;
+
+    var mediaPlayer : MediaPlayer = MediaPlayer()
 
 
+    fun play (song : Int) {
 
-    fun play (song : Int){
-       if (mediaPlayer==null) {
-           mediaPlayer = MediaPlayer.create(context, song)
-           mediaPlayer?.start()
-           mediaPlayer?.setOnCompletionListener(MediaPlayer.OnCompletionListener {
-               mediaPlayer?.stop()
-               mediaPlayer?.release()
-               mediaPlayer = null;
-           })
+        try {
+            val songFile = context?.getResources()?.openRawResourceFd(song) ?: return
+            mediaPlayer.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
+            songFile.close()
+        } catch (exeption: Exception) {//do nothing
+        }
 
-       }
+            mediaPlayer.prepare()
+            mediaPlayer.start()
+
+        }
+
+        //to be called a the end of each song
+        fun resetPlayer() {
+            mediaPlayer.reset()
+            mediaPlayer.release()
+        }
+
+        //to be called when activity is destroyed
+        fun releasePlayer() {
+            mediaPlayer.release()
+        }
     }
 
-}
+
 

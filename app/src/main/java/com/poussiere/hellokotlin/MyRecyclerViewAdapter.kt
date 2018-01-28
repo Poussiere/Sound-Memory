@@ -12,27 +12,19 @@ import kotlinx.android.synthetic.main.recycler_element.view.*
 /**
  * Created by poussiere on 21/01/18.
  */
-class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
+class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : AdapterOnClickHandler) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
     //La liste des cartes récupérée dans le constructeur
     var myCardList : MutableList<Card> = cardList
 
-    //Un int qui va servir à stocker temporairement l'index de la carte précédemment cliquée
-    var previousIndex : Int=1
-    var actualIndex : Int=1
+    var myClickHandler : AdapterOnClickHandler = clickHandler
 
-    //Un boolean qui va indiquer si la carte cliquée est la première ou la deuxième
-    var firstCard : Boolean = true
 
-    //Un boolean qui va indiquer si un son est entrain d'être lu
-    var songIsPlaying : Boolean = false
-
-/*
     interface AdapterOnClickHandler {
 
         fun doSomethingFromActivityWhenClick(index: Int)
     }
-    */
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
@@ -92,69 +84,13 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>) : RecyclerView.Adapter
 
         override fun onClick(p0: View?) {
 
-
-
-            // Le clique ne va réagir que si la carte cliquée n'a pas encore été découverte et que si la lecture d'un son n'est pas en cours
-            if (!myCardList[adapterPosition].discovered && !songIsPlaying){
-
-                when (firstCard){
-                    true -> doWhenFirstClick()
-                    false -> doWhenSecondClick()
-                }
-            } }
-        
-
-        fun doWhenFirstClick(){
-
-       itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
-            songIsPlaying=true
-            previousIndex=adapterPosition
-            myCardList[previousIndex].checked=true;
-
-
-            player.play(myCardList[previousIndex].song)
-            player.mediaPlayer?.setOnCompletionListener(){
-                songIsPlaying=false
-                firstCard=false
-                notifyDataSetChanged()
-            }
-
-
-
+        myClickHandler.doSomethingFromActivityWhenClick(adapterPosition)
 
         }
 
-        fun doWhenSecondClick(){
-            songIsPlaying=true
-            itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
-            actualIndex=adapterPosition
-
-           var cardsAreSimilar : Boolean = false
-
-
-            if (myCardList[previousIndex].id == myCardList[actualIndex].id){
-                cardsAreSimilar = true
-            }
-
-
-
-
-            player.play(myCardList[actualIndex].song)
-            player.mediaPlayer?.setOnCompletionListener(){
-
-                if (cardsAreSimilar){
-                    myCardList[previousIndex].discovered=true
-                    myCardList[actualIndex].discovered=true}
-                songIsPlaying=false
-                myCardList[previousIndex].checked=false
-                firstCard=true
-                notifyDataSetChanged()
-            }
-
-
-
         }
+
     }
-}
+
 
 
