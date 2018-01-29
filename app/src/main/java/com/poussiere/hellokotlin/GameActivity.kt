@@ -23,6 +23,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
     var actualIndex = 1
     var myRecyclerViewAdapter : MyRecyclerViewAdapter?=null
     var player : Song = Song(this)
+   
 
     override fun doSomethingFromActivityWhenClick(index: Int) {
         // Le clique ne va réagir que si la carte cliquée n'a pas encore été découverte et que si la lecture d'un son n'est pas en cours
@@ -56,12 +57,16 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
 
 
     fun doWhenSecondClick(index : Int){
-        songIsPlaying=true
+       
+        actualIndex=index
+        // si on clique à nouveau sur la même case, il ne se pas rien
+        if (actualIndex==previousIndex) return
+        
       //  itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
         cardTab[index].checked = true;
         myRecyclerViewAdapter?.updateCardsList(cardTab)
         myRecyclerViewAdapter?.notifyItemChanged(index)
-        actualIndex=index
+        
 
         var cardsAreSimilar : Boolean = false
 
