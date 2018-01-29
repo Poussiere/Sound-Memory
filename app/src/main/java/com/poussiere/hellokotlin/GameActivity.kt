@@ -44,7 +44,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         myRecyclerViewAdapter?.notifyItemChanged(index)
         songIsPlaying = true
         previousIndex = index
-        player.play(cardTab[index].song)
+        player.play(cardTab[previousIndex].song)
         player.mediaPlayer?.setOnCompletionListener() {
 
             player.resetPlayer()
