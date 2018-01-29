@@ -11,6 +11,9 @@ class Song (val context : Context?){
     var mediaPlayer : MediaPlayer = MediaPlayer()
 
 
+    fun prepare (Song : Int){
+
+    }
     fun play (song : Int) {
 
         mediaPlayer=MediaPlayer()
