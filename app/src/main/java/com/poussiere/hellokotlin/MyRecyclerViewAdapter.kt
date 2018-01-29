@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.poussiere.hellokotlin.data.Card
-import com.poussiere.hellokotlin.utils.Song
 import kotlinx.android.synthetic.main.recycler_element.view.*
 
 /**
@@ -58,23 +57,22 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
         //similar to getContext in java
         var context = itemView?.context;
 
-        var player:Song=Song(context)
-
-
        init {
            itemView?.setOnClickListener(this)
        }
 
         fun bindItems(card : Card) {
 
-            if (card.checked){
-                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
-            }
 
-            else if (card.discovered) {
+
+            if (card.discovered) {
                 itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
 
-            }else {
+            }
+            else if (card.checked){
+                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
+            }
+            else {
                 itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
             }
 

@@ -3,6 +3,7 @@ package com.poussiere.hellokotlin
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import com.poussiere.hellokotlin.data.Card
 import com.poussiere.hellokotlin.utils.CardUtils
 import com.poussiere.hellokotlin.utils.Song
@@ -23,82 +24,10 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
     var actualIndex = 1
     var myRecyclerViewAdapter : MyRecyclerViewAdapter?=null
     var player : Song = Song(this)
-   
-
-    override fun doSomethingFromActivityWhenClick(index: Int) {
-        // Le clique ne va réagir que si la carte cliquée n'a pas encore été découverte et que si la lecture d'un son n'est pas en cours
-        if (!cardTab[index].discovered && !songIsPlaying){
-
-            when (firstCard){
-                true -> doWhenFirstClick(index)
-                false -> doWhenSecondClick(index)
-            }
-        }
-    }
 
 
-    fun doWhenFirstClick(index : Int) {
 
-       // itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
-        cardTab[index].checked = true;
-        myRecyclerViewAdapter?.updateCardsList(cardTab)
-        myRecyclerViewAdapter?.notifyItemChanged(index)
-        songIsPlaying = true
-        previousIndex = index
-        player.play(cardTab[previousIndex].song)
-        player.mediaPlayer?.setOnCompletionListener() {
-
-            player.resetPlayer()
-            songIsPlaying = false
-            firstCard = false
-
-        }
-    }
-
-
-    fun doWhenSecondClick(index : Int){
-       
-        actualIndex=index
-        // si on clique à nouveau sur la même case, il ne se pas rien
-        if (actualIndex==previousIndex) return
-        
-      //  itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
-        cardTab[index].checked = true;
-        myRecyclerViewAdapter?.updateCardsList(cardTab)
-        myRecyclerViewAdapter?.notifyItemChanged(index)
-        
-
-        var cardsAreSimilar : Boolean = false
-
-
-        if (cardTab[previousIndex].id ==cardTab[actualIndex].id){
-            cardsAreSimilar = true
-        }
-
-        player.play(cardTab[actualIndex].song)
-        player.mediaPlayer?.setOnCompletionListener(){
-
-            if (cardsAreSimilar){
-                cardTab[previousIndex].discovered=true
-                cardTab[actualIndex].discovered=true}
-            songIsPlaying=false
-            cardTab[previousIndex].checked=false
-            firstCard=true
-            
-        }else {
-                //Si les deux cartes sont différentent, on remet leur boolean checked à false afin qu'elles reprennent toutes les deux leur couleur initiale
-                cardTab[previousIndex].checked=false
-                cardTab[actualIndex].checked=false
-        }
-        //On actualise la vue
-        myRecyclerViewAdapter?.updateCardsList(cardTab)
-        myRecyclerViewAdapter?.notifyDataSetChanged()
-
-
-    }
-
-
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_game)
@@ -110,11 +39,96 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         game_board.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this@GameActivity, 4) // 3 = number of items on each row
         game_board.setLayoutManager(gridLayoutManager)
-         myRecyclerViewAdapter= MyRecyclerViewAdapter(cardTab, this)
-       // myRecyclerViewAdapter!!.setHasStableIds(true)
+        myRecyclerViewAdapter= MyRecyclerViewAdapter(cardTab, this)
+        // myRecyclerViewAdapter!!.setHasStableIds(true)
         game_board.setAdapter(myRecyclerViewAdapter)
 
+
     }
+
+
+    override fun doSomethingFromActivityWhenClick(index: Int) {
+        // Le clique ne va réagir que si la carte cliquée n'a pas encore été découverte et que si la lecture d'un son n'est pas en cours
+
+       Log.i("GameActivity", "interface click entree")
+        if (!cardTab[index].discovered && !songIsPlaying){
+            Log.i("GameActivity", "carte non découverte et son n'est pas entrain d'être lu")
+            when (firstCard){
+                true -> doWhenFirstClick(index)
+                false -> doWhenSecondClick(index)
+            }
+        }
+    }
+
+
+    fun doWhenFirstClick(index : Int) {
+        songIsPlaying = true
+        Log.i("GameActivity", "dowhenfirstclickdémaré")
+       // itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
+        cardTab[index].checked = true;
+        Log.i("GameActivity", "first click cardtab mis sur true")
+        myRecyclerViewAdapter?.updateCardsList(cardTab)
+        myRecyclerViewAdapter?.notifyItemChanged(index)
+        Log.i("GameActivity", "recycler notified 1")
+        previousIndex = index
+        Log.i("GameActivity", "Attention le son va être lu 1")
+        player.play(cardTab[index].song)
+        Log.i("GameActivity", "Normalement le son a été lancé 1")
+
+        player.mediaPlayer.setOnCompletionListener() {
+            Log.i("GameActivity", "setOnClickListenerEntrée")
+                player.resetPlayer()
+                firstCard = false
+                songIsPlaying = false
+            }
+
+    }
+
+
+    fun doWhenSecondClick(index : Int) {
+
+        Log.i("GameAcitivity", "do when second click entered")
+        actualIndex = index
+        // si on clique à nouveau sur la même case, il ne se pas rien
+
+        if (actualIndex == previousIndex) return
+        Log.i("GameAcitivity", "conditon 1 passée")
+
+        songIsPlaying = true
+        //  itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
+        cardTab[index].checked = true;
+        Log.i("GameAcitivity", "ColorChecked passed")
+        myRecyclerViewAdapter?.updateCardsList(cardTab)
+        myRecyclerViewAdapter?.notifyItemChanged(index)
+        Log.i("GameAcitivity", "recycler notifies")
+
+        player.play(cardTab[actualIndex].song)
+
+        player.mediaPlayer.setOnCompletionListener() {
+            Log.i("GameActivity", "setOnClickListenerEntrée")
+
+
+                if (cardTab[previousIndex].id == cardTab[actualIndex].id) {
+                    cardTab[previousIndex].discovered = true
+                    cardTab[actualIndex].discovered = true
+                } else {
+
+                    cardTab[previousIndex].checked = false
+                    cardTab[actualIndex].checked = false
+                }
+
+
+                firstCard = true
+
+
+                //On actualise la vue
+                myRecyclerViewAdapter?.updateCardsList(cardTab)
+                myRecyclerViewAdapter?.notifyDataSetChanged()
+                songIsPlaying = false
+            }
+
+    }
+
 
     override fun onDestroy() {
        player.releasePlayer()
