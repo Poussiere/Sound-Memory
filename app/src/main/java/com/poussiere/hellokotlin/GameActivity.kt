@@ -18,7 +18,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
     // retrieve a mutableList of all Cards objects
     var cardTab : MutableList<Card> = CardUtils.initCards()
     var songIsPlaying : Boolean = false
-    var firstCard : Boolean = false
+    var firstCard : Boolean = true
     var previousIndex = 1
     var actualIndex = 1
     var myRecyclerViewAdapter : MyRecyclerViewAdapter?=null
