@@ -20,8 +20,11 @@ class Song (val context : Context?){
         } catch (exeption: Exception) {//do nothing
         }
 
-            mediaPlayer.prepare()
+            mediaPlayer.prepareAsync()
+            mediaPlayer.setOnPreparedListener(){
             mediaPlayer.start()
+         }
+            
 
         }
 
