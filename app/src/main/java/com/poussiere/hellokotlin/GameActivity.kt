@@ -79,10 +79,15 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
             songIsPlaying=false
             cardTab[previousIndex].checked=false
             firstCard=true
-            myRecyclerViewAdapter?.updateCardsList(cardTab)
-           myRecyclerViewAdapter?.notifyDataSetChanged()
+            
+        }else {
+                //Si les deux cartes sont différentent, on remet leur boolean checked à false afin qu'elles reprennent toutes les deux leur couleur initiale
+                cardTab[previousIndex].checked=false
+                cardTab[actualIndex].checked=false
         }
-
+        //On actualise la vue
+        myRecyclerViewAdapter?.updateCardsList(cardTab)
+        myRecyclerViewAdapter?.notifyDataSetChanged()
 
 
     }
