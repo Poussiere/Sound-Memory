@@ -30,8 +30,8 @@ class Song (val context : Context?){
 
         //to be called a the end of each song
         fun resetPlayer() {
-            //mediaPlayer.reset()
-           // mediaPlayer.release()
+           mediaPlayer.stop()
+            mediaPlayer.reset()
         }
 
         //to be called when activity is destroyed
