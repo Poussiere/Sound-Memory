@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.recycler_element.view.*
 /**
  * Created by poussiere on 21/01/18.
  */
-class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : AdapterOnClickHandler) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
+class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : AdapterOnClickHandler, screenHeight : Int) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
     //La liste des cartes récupérée dans le constructeur
     var myCardList : MutableList<Card> = cardList
@@ -46,6 +46,11 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
 
         var card = myCardList[position]
         holder?.bindItems(card);
+        
+   
+       
+
+        
     }
 
     fun updateCardsList (cardList : MutableList<Card>) {
@@ -60,7 +65,15 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
        init {
            itemView?.setOnClickListener(this)
        }
-
+        
+        //Make recyclerview fit screen size
+        LayoutParams params = song_card_image.getLayoutParams();
+        
+        params.height = screenHeight/5 // because there are 5 rows. 
+        params.width = LayoutParams.MATCH_PARENT
+        song_card_image.setLayoutParams(params)
+        
+        
         fun bindItems(card : Card) {
 
 
