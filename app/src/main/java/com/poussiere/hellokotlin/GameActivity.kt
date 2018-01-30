@@ -140,8 +140,9 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
  fun screenHeight (): Int {
        
         var displayMetrics =getResources().getDisplayMetrics();
-        var dpHeight = displayMetrics.heightPixels / displayMetrics.density;
-        return dpHeight
+      //  var dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+     var height = displayMetrics.heightPixels
+        return height
   
     }
     override fun onDestroy() {
