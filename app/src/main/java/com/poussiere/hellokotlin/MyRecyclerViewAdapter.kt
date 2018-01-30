@@ -2,12 +2,11 @@ package com.poussiere.hellokotlin
 
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
 import android.widget.LinearLayout
-import com.poussiere.hellokotlin.R.id.song_card_image
 import com.poussiere.hellokotlin.data.Card
 import kotlinx.android.synthetic.main.recycler_element.view.*
 
@@ -18,6 +17,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
 
     //La liste des cartes récupérée dans le constructeur
     var myCardList : MutableList<Card> = cardList
+    var screen = screenHeight
 
     var myClickHandler : AdapterOnClickHandler = clickHandler
 
@@ -40,7 +40,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
         return 20;
     }
 
-    //To avoid the blink when recyclerview is refreshed
+
 
     override fun getItemId(position: Int): Long {
         return super.getItemId(position)
@@ -65,33 +65,28 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
         //similar to getContext in java
         var context = itemView?.context;
 
+
        init {
            itemView?.setOnClickListener(this)
        }
-        
-        //Make recyclerview fit screen size
-        var params : LinearLayout.LayoutParams = song_card_image
 
-       // params.height = screenHeight/5 // because there a
-        //re 5 rows.
-       // params.width = LayoutParams.MATCH_PARENT
-       itemView.song_card_imag.setLayoutParams(AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screenHeight/5))
-       itemView.song_card_imag.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);    
-        
+
         
         fun bindItems(card : Card) {
 
+          var layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen/5)
+          itemView.song_card_image.setLayoutParams(layoutParams)
 
 
             if (card.discovered) {
-                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
+                itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
 
             }
             else if (card.checked){
-                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
+                itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
             }
             else {
-                itemView.song_card.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
             }
 
 
@@ -99,8 +94,10 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
         }
 
         override fun onClick(p0: View?) {
-        
+
+            itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         myClickHandler.doSomethingFromActivityWhenClick(adapterPosition)
+
 
         }
 

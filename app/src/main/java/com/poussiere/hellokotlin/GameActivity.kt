@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
+import android.view.View
 import com.poussiere.hellokotlin.data.Card
 import com.poussiere.hellokotlin.utils.CardUtils
 import com.poussiere.hellokotlin.utils.Song
@@ -31,6 +32,14 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_game)
+
+
+        game_board.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
         //And we shuffle the cards
         cardTab.shuffle();

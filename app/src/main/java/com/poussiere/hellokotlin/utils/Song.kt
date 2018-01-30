@@ -13,21 +13,21 @@ class Song (val context : Context?){
     fun prepareSoundFile (song : Int) {
 
             val songFile = context?.getResources()?.openRawResourceFd(song) ?: return
-            mediaPlayer?.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
+            mediaPlayer.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
             songFile.close()
 
         }
 
         //to be called a the end of each song
         fun resetPlayer() {
-           mediaPlayer?.stop()
-            mediaPlayer?.reset()
+           mediaPlayer.stop()
+            mediaPlayer.reset()
 
         }
 
         //to be called when activity is destroyed
         fun releasePlayer() {
-            mediaPlayer?.release()
+            mediaPlayer.release()
 
         }
     }
