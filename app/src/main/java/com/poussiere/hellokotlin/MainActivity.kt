@@ -18,8 +18,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        mainTextView.setText(R.string.main_text_view_content)
-        mainTextView.setOnClickListener{
+        main_text_view.setText(R.string.main_text_view_content)
+        player_nb.setText(R.string.un_joueur)
+        main_text_view.setOnClickListener{
             val intent = Intent(this@MainActivity, GameActivity::class.java)
             startActivity(intent)
         }
