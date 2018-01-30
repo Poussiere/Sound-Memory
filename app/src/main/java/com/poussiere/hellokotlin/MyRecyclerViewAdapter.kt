@@ -75,7 +75,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
        // params.height = screenHeight/5 // because there a
         //re 5 rows.
        // params.width = LayoutParams.MATCH_PARENT
-       var song_card_imag.setLayoutParams(AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screenHeight/5))
+       itemView.song_card_imag.setLayoutParams(AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screenHeight/5))
 
         
         
