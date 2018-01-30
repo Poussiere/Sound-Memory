@@ -39,7 +39,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         game_board.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this@GameActivity, 4) // 3 = number of items on each row
         game_board.setLayoutManager(gridLayoutManager)
-        myRecyclerViewAdapter= MyRecyclerViewAdapter(cardTab, this)
+        myRecyclerViewAdapter= MyRecyclerViewAdapter(cardTab, this, screenHeiht)
         // myRecyclerViewAdapter!!.setHasStableIds(true)
         game_board.setAdapter(myRecyclerViewAdapter)
 
@@ -136,8 +136,14 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
             }}
 
     }
-
-
+// On va récupérer la hauteur de l'écran en dp et la passer au constructeur du recyclerview adapter en parametre
+ fun screenHeight (): Int {
+       
+        var displayMetrics =getResources().getDisplayMetrics();
+        var dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+        return dpHeight
+  
+    }
     override fun onDestroy() {
        player.releasePlayer()
         super.onDestroy()
