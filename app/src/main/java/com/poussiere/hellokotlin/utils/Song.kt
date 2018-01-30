@@ -10,20 +10,12 @@ class Song (val context : Context?){
 
     var mediaPlayer : MediaPlayer = MediaPlayer()
 
-
-    fun prepare (Song : Int){
-
-    }
-    fun prepare (song : Int) {
+    fun prepareSoundFile (song : Int) {
 
             val songFile = context?.getResources()?.openRawResourceFd(song) ?: return
             mediaPlayer?.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
             songFile.close()
 
-
-
-            mediaPlayer?.prepareAsync()
-           
         }
 
         //to be called a the end of each song
