@@ -114,8 +114,8 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
          
         player.mediaPlayer.setOnCompletionListener() {
             Log.i("GameActivity", "setOnClickListenerEntrée")
-
-
+            player.resetPlayer()
+    
                 if (cardTab[previousIndex].id == cardTab[actualIndex].id) {
                     cardTab[previousIndex].discovered = true
                     cardTab[actualIndex].discovered = true
