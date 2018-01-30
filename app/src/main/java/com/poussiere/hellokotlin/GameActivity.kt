@@ -72,8 +72,12 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         Log.i("GameActivity", "recycler notified 1")
         previousIndex = index
         Log.i("GameActivity", "Attention le son va être lu 1")
-        player.play(cardTab[index].song)
-        Log.i("GameActivity", "Normalement le son a été lancé 1")
+        player.prepareSoundFile(cardTab[index].song)
+        player.mediaPlayer.prepareAsync()
+        player.mediaPlayer.setOnPreparedListener(){
+            mediaPlayer?.start()
+                Log.i("song kt", "Le mediaplayer a été starté")
+         
 
         player.mediaPlayer.setOnCompletionListener() {
             Log.i("GameActivity", "setOnClickListenerEntrée")
@@ -81,7 +85,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
                 firstCard = false
                 songIsPlaying = false
             }
-
+        }
     }
 
 
@@ -102,8 +106,12 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         myRecyclerViewAdapter?.notifyItemChanged(index)
         Log.i("GameAcitivity", "recycler notifies")
 
-        player.play(cardTab[actualIndex].song)
-
+        player.prepareSoundFile(cardTab[actualIndex].song)
+        player.mediaPlayer.prepareAsync()
+        player.mediaPlayer.setOnPreparedListener(){
+            player.mediaPlayer.start()
+                Log.i("song kt", "Le mediaplayer a été starté")
+         
         player.mediaPlayer.setOnCompletionListener() {
             Log.i("GameActivity", "setOnClickListenerEntrée")
 
@@ -125,7 +133,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
                 myRecyclerViewAdapter?.updateCardsList(cardTab)
                 myRecyclerViewAdapter?.notifyDataSetChanged()
                 songIsPlaying = false
-            }
+            }}
 
     }
 
