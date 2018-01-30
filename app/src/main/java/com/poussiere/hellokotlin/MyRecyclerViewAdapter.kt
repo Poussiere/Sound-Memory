@@ -5,6 +5,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
+import android.widget.LinearLayout
+import com.poussiere.hellokotlin.R.id.song_card_image
 import com.poussiere.hellokotlin.data.Card
 import kotlinx.android.synthetic.main.recycler_element.view.*
 
@@ -67,11 +70,13 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
        }
         
         //Make recyclerview fit screen size
-        LayoutParams params = song_card_image.getLayoutParams();
-        
-        params.height = screenHeight/5 // because there are 5 rows. 
-        params.width = LayoutParams.MATCH_PARENT
-        song_card_image.setLayoutParams(params)
+        var params : LinearLayout.LayoutParams = song_card_image
+
+       // params.height = screenHeight/5 // because there a
+        //re 5 rows.
+       // params.width = LayoutParams.MATCH_PARENT
+       var song_card_imag.setLayoutParams(AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screenHeight/5))
+
         
         
         fun bindItems(card : Card) {

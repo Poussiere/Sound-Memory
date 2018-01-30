@@ -28,7 +28,7 @@ class Song (val context : Context?){
         //to be called when activity is destroyed
         fun releasePlayer() {
             mediaPlayer?.release()
-            mediaPlayer=null
+
         }
     }
 
