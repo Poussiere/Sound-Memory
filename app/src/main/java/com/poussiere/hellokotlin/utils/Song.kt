@@ -14,9 +14,8 @@ class Song (val context : Context?){
     fun prepare (Song : Int){
 
     }
-    fun play (song : Int) {
+    fun prepare (song : Int) {
 
-        mediaPlayer=MediaPlayer()
             val songFile = context?.getResources()?.openRawResourceFd(song) ?: return
             mediaPlayer?.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
             songFile.close()
@@ -24,12 +23,7 @@ class Song (val context : Context?){
 
 
             mediaPlayer?.prepareAsync()
-            mediaPlayer?.setOnPreparedListener(){
-            mediaPlayer?.start()
-                Log.i("song kt", "Le mediaplayer a été starté")
-         }
-            
-
+           
         }
 
         //to be called a the end of each song
@@ -42,6 +36,7 @@ class Song (val context : Context?){
         //to be called when activity is destroyed
         fun releasePlayer() {
             mediaPlayer?.release()
+            mediaPlayer=null
         }
     }
 
