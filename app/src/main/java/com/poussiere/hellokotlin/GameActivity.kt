@@ -75,7 +75,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         player.prepareSoundFile(cardTab[index].song)
         player.mediaPlayer.prepareAsync()
         player.mediaPlayer.setOnPreparedListener(){
-            mediaPlayer?.start()
+            player.mediaPlayer.start()
                 Log.i("song kt", "Le mediaplayer a été starté")
          
 
