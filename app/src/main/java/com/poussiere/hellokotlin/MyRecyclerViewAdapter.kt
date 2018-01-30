@@ -76,7 +76,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
         //re 5 rows.
        // params.width = LayoutParams.MATCH_PARENT
        itemView.song_card_imag.setLayoutParams(AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screenHeight/5))
-
+       itemView.song_card_imag.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);    
         
         
         fun bindItems(card : Card) {
@@ -99,7 +99,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
         }
 
         override fun onClick(p0: View?) {
-
+        
         myClickHandler.doSomethingFromActivityWhenClick(adapterPosition)
 
         }
