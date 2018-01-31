@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">SOUND MEMORY</string>
+    <string name="sound">SOUND</string>
+    <string name="memory">MEMORY</string>
     <string name="main_text_view_content">Jouer</string>
     <string name="un_joueur">1 joueur</string>
     <string name="deux_joueurs">2 joueurs</string>
