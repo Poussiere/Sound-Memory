@@ -12,8 +12,6 @@ import kotlin.collections.*
 
 class MainActivity : AppCompatActivity() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -24,9 +22,21 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, GameActivity::class.java)
             startActivity(intent)
         }
-
+   var  prefs : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+          var  playerNumber : Int = prefs.getInt ("player_numnber", 1)
+     
+      when (playerNumber){
+       1->onePlayerSelection()
+       2->twoPlayersSelection()   
+      }
 
     }
-
+    fun onePlayerSelection (){
+       player_nb.setText(R.string.one_player)
+        //créer sharedPreference
+    }
+    fun twoPlayersSelection () {
+        
+    }
 
 }
