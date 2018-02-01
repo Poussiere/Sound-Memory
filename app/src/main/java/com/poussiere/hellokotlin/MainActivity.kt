@@ -22,10 +22,18 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         main_text_view.setText(R.string.main_text_view_content)
-        player_nb.setText(R.string.un_joueur)
+        
         main_text_view.setOnClickListener {
             val intent = Intent(this@MainActivity, GameActivity::class.java)
-            startActivity(intent)
+            player_nb.setText("")
+            ActivityOptionsCompat options = ActivityOptionsCompat.  
+                       makeSceneTransitionAnimation(this@MainActivity,
+                         main_text_view,
+                         ViewCompat.getTransitionName(main_text_view));
+                        startActivity(intent, options.toBundle());  
+            
+            
+        
         }
         var prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         var playerNumber: Int = prefs.getInt(SHAREDPREFERENCES_PLAYERS_KEY, 1)
@@ -59,5 +67,6 @@ class MainActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
         super.onResume()
+        player_nb.setText(R.string.un_joueur)
     }
 }
