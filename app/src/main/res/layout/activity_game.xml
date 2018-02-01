@@ -13,7 +13,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:centerInLayout="true"
-    android:transitionName="simple_activity_wow"
+    android:transitionName="transition_wow"
 
     >
         <android.support.v7.widget.RecyclerView
