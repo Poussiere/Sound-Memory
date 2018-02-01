@@ -13,11 +13,11 @@ import kotlinx.android.synthetic.main.recycler_element.view.*
 /**
  * Created by poussiere on 21/01/18.
  */
-class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : AdapterOnClickHandler, screenHeight : Int) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
+class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : AdapterOnClickHandler, screenWidth: Int) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
     //La liste des cartes récupérée dans le constructeur
     var myCardList : MutableList<Card> = cardList
-    var screen = screenHeight
+    var screen = screenWidth
 
     var myClickHandler : AdapterOnClickHandler = clickHandler
 
@@ -74,8 +74,10 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
         
         fun bindItems(card : Card) {
 
-          var layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen/5)
-          itemView.song_card_image.setLayoutParams(layoutParams)
+            // La hauteur des cellules est égale à leur largeur. Pour obtenir leur largeur, on divise par 4 la largeur de l'écran en pixel car il y a 4 cases par ligne
+            //Cette largeur d'écran a été calcuée dans la GameActivity et transmise via le constructeur
+            var layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen/4)
+            itemView.song_card_image.setLayoutParams(layoutParams)
 
 
             if (card.discovered) {
