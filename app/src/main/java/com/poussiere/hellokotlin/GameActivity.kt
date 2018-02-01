@@ -152,7 +152,10 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         return width
   
     }
-    
+    override fun onPause() {
+       player.resetPlayer()
+        super.onPause()
+    }
     override fun onDestroy() {
        player.releasePlayer()
         super.onDestroy()
