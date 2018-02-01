@@ -40,7 +40,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         game_board.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this@GameActivity, 4) // 3 = number of items on each row
         game_board.setLayoutManager(gridLayoutManager)
-        myRecyclerViewAdapter= MyRecyclerViewAdapter(cardTab, this, screenHeight())
+        myRecyclerViewAdapter= MyRecyclerViewAdapter(cardTab, this, screenWidth())
         // myRecyclerViewAdapter!!.setHasStableIds(true)
         game_board.setAdapter(myRecyclerViewAdapter)
 
@@ -141,11 +141,18 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
  fun screenHeight (): Int {
        
         var displayMetrics =getResources().getDisplayMetrics();
-      //  var dpHeight = displayMetrics.heightPixels / displayMetrics.density;
      var height = displayMetrics.heightPixels
         return height
   
     }
+     fun screenWidth (): Int {
+       
+        var displayMetrics =getResources().getDisplayMetrics();
+     var width = displayMetrics.widthPixels
+        return width
+  
+    }
+    
     override fun onDestroy() {
        player.releasePlayer()
         super.onDestroy()
