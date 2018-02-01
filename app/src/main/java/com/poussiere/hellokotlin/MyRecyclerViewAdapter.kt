@@ -79,7 +79,8 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
             var layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen/4)
             itemView.song_card_image.setLayoutParams(layoutParams)
 
-
+            itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+          
             if (card.discovered) {
                 itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
 
@@ -97,7 +98,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
 
         override fun onClick(p0: View?) {
 
-            itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            
         myClickHandler.doSomethingFromActivityWhenClick(adapterPosition)
 
 
