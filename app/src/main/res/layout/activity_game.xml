@@ -14,6 +14,7 @@
     android:orientation="vertical"
     android:centerInLayout="true"
     android:transitionName="transition_wow"
+    tools:ignore="UnusedAttribute"
 
     >
         <android.support.v7.widget.RecyclerView
