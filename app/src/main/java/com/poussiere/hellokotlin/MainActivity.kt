@@ -23,7 +23,10 @@ import kotlin.collections.*
 
 class MainActivity : AppCompatActivity() {
 
-    val SHAREDPREFERENCES_PLAYERS_KEY: String = "player_number"
+    companion object {
+        val SHAREDPREFERENCES_PLAYERS_KEY: String = "player_number"
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

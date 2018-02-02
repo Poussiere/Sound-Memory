@@ -18,7 +18,6 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
     //La liste des cartes récupérée dans le constructeur
     var myCardList : MutableList<Card> = cardList
     var screen = screenWidth
-
     var myClickHandler : AdapterOnClickHandler = clickHandler
 
 
@@ -57,7 +56,7 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
     }
 
     fun updateCardsList (cardList : MutableList<Card>) {
-    myCardList=cardList
+        myCardList=cardList
     }
 
 

@@ -5,4 +5,10 @@
     <string name="main_text_view_content">JOUER</string>
     <string name="un_joueur">1 joueur</string>
     <string name="deux_joueurs">2 joueurs</string>
+    <string name="player_1">Joueur 1</string>
+    <string name="player_2">Joueur 2</string>
+    <string name="player_1_wins">Le joueur 1 gagne!</string>
+    <string name="player_2_wins">Le joueur 2 gagne!</string>
+    <string name="egality">Egalité!</string>
+
 </resources>
