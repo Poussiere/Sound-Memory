@@ -80,9 +80,9 @@ class MyRecyclerViewAdapter (cardList: MutableList<Card>, clickHandler : Adapter
 
             itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
           
-            if (card.discovered) {
-                itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
-
+            if (card.discovered || card.discovered2) {
+                if (card.discovered) itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
+                if (card.discovered2) itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPlayer2))
             }
             else if (card.checked){
                 itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))

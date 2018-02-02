@@ -8,13 +8,14 @@
 
     >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center_vertical|center_horizontal"
         android:orientation="vertical"
         android:transitionName="transition_wow"
+        android:id="@+id/game_contenair"
 
         tools:ignore="UnusedAttribute">
 
@@ -28,8 +29,11 @@
             android:id="@+id/player_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:visibility="gone"
-            tools:text="Joueur 2" />
+            android:paddingTop="16dp"
+            tools:text="Joueur 2"
+            android:textSize="25dp"/>
 
     </LinearLayout>
 </LinearLayout>
