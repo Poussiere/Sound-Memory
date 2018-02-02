@@ -12,14 +12,14 @@
     </style>
 
     <style name="TitleTextViewStyle">
-        <item name="android:textSize">45dp</item>
+        <item name="android:textSize">90dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorAccent</item>
 
     </style>
 
     <style name="TextViewStyle">
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">25dp</item>
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 

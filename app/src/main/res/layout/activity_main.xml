@@ -35,7 +35,6 @@
         android:id="@+id/main_text_view"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:textSize="20dp"
         android:textAppearance="@style/TextViewStyle"
         android:background="@color/colorPrimary"
         android:gravity="center"
@@ -75,7 +74,6 @@
         android:paddingBottom="30dp"
         android:paddingLeft="40dp"
         android:textAppearance="@style/TextViewStyle"
-        android:textSize="20dp"
         tools:text="1 joueur" />
 
 
