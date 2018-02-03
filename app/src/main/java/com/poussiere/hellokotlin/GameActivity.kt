@@ -44,8 +44,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
 
         setContentView(R.layout.activity_game)
 
-        //we shuffle the cards
-        cardTab.shuffle();
+        //we shuffle the 51 cards
 
         //How many players are there?
         var prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
