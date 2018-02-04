@@ -1,25 +1,25 @@
 package com.poussiere.hellokotlin.utils
 
+import android.util.Log
 import com.poussiere.hellokotlin.R
 import com.poussiere.hellokotlin.data.Card
 
 /**
  * Created by poussiere on 24/01/18.
  */
- class CardUtils{
+class CardUtils {
 
-  //Create a methode that returns a mutableList of the 20 objects + in the data class create a bolean variable to know if the card is discovered or not
-  
-  
-  
+    //Create a methode that returns a mutableList of the 20 objects + in the data class create a bolean variable to know if the card is discovered or not
+
+
 //Methode that determine each id card and song to play
     //There are 2*10 cards.
 
     companion object {
-        fun initCards (): MutableList<Card>{
+        fun initCards(): MutableList<Card> {
 
             //instanciate an empty array
-            var cardlist : MutableList<Card> = mutableListOf<Card>()
+            var cardlist: MutableList<Card> = mutableListOf<Card>()
 
             /*
             with(cardlist){
@@ -130,7 +130,7 @@ import com.poussiere.hellokotlin.data.Card
             }
 
 */
-            with(cardlist){
+            with(cardlist) {
                 add(Card(1, R.raw.bang))
                 add(Card(2, R.raw.bateau))
                 add(Card(3, R.raw.beatbox))
@@ -188,15 +188,71 @@ import com.poussiere.hellokotlin.data.Card
 
 
             cardlist.shuffle()
-            var smallCardlist : MutableList<Card> =cardlist.subList(0, 10)
+            var smallCardlist: MutableList<Card> = cardlist.subList(0, 10) //Returns a view of the portion of this list between the specified fromIndex (inclusive) and toIndex (exclusive).
+           // var smallCardlist = mutableListOf<Card>()
 
-            for (i in 0..10){
-                smallCardlist.add(smallCardlist[i])
 
+            for (i in 0..9) {
+                smallCardlist.add(cardlist[i])
+                Log.i("cardutils", smallCardlist[i].id.toString())
             }
+
+/*
+            smallCardlist[0]=cardlist[0]
+            smallCardlist[1]=cardlist[1]
+            smallCardlist[2]=cardlist[2]
+            smallCardlist[3]=cardlist[3]
+            smallCardlist[4]=cardlist[4]
+            smallCardlist[5]=cardlist[5]
+            smallCardlist[6]=cardlist[6]
+            smallCardlist[7]=cardlist[7]
+            smallCardlist[8]=cardlist[8]
+            smallCardlist[9]=cardlist[9]
+
+            smallCardlist[10]=cardlist[0]
+            smallCardlist[11]=cardlist[1]
+            smallCardlist[12]=cardlist[2]
+            smallCardlist[13]=cardlist[3]
+            smallCardlist[14]=cardlist[4]
+            smallCardlist[15]=cardlist[5]
+            smallCardlist[16]=cardlist[6]
+            smallCardlist[17]=cardlist[7]
+            smallCardlist[18]=cardlist[8]
+            smallCardlist[19]=cardlist[9]
+
+*/
+            /*
+            smallCardlist.add(cardlist[0])
+            smallCardlist.add(cardlist[1])
+            smallCardlist.add(cardlist[2])
+            smallCardlist.add(cardlist[3])
+            smallCardlist.add(cardlist[4])
+            smallCardlist.add(cardlist[5])
+            smallCardlist.add(cardlist[6])
+            smallCardlist.add(cardlist[7])
+            smallCardlist.add(cardlist[8])
+            smallCardlist.add(cardlist[9])
+
+            smallCardlist.add(cardlist[0])
+            smallCardlist.add(cardlist[1])
+            smallCardlist.add(cardlist[2])
+            smallCardlist.add(cardlist[3])
+            smallCardlist.add(cardlist[4])
+            smallCardlist.add(cardlist[5])
+            smallCardlist.add(cardlist[6])
+            smallCardlist.add(cardlist[7])
+            smallCardlist.add(cardlist[8])
+            smallCardlist.add(cardlist[9])
+
+
+
+            for (i in 0..9){
+            //  smallCardlist.add(cardlist[i])
+            Log.i("cardutils", smallCardlist[i].id.toString())}
+*/
+            smallCardlist.shuffle()
             return smallCardlist
         }
-
 
 
     }
