@@ -1,21 +1,17 @@
 package com.poussiere.hellokotlin
 
-import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
 import android.preference.PreferenceManager
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.View
 import com.poussiere.hellokotlin.MainActivity.Companion.SHAREDPREFERENCES_PLAYERS_KEY
-import com.poussiere.hellokotlin.data.Card
+import com.poussiere.hellokotlin.objects.Card
 import com.poussiere.hellokotlin.utils.CardUtils
 import com.poussiere.hellokotlin.utils.Song
 import kotlinx.android.synthetic.main.activity_game.*
-import java.security.AccessController.getContext
 
 
 /**
@@ -50,8 +46,8 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         var prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         playerNumber = prefs.getInt(SHAREDPREFERENCES_PLAYERS_KEY, 1)
         //S'il y a deux joueurs, on va afficher le joueur dont c'est le tour en bas*
-        if (playerNumber == 2){
-            player_tv.visibility=View.VISIBLE
+        if (playerNumber == 2) {
+            player_tv.visibility = View.VISIBLE
             player_tv.setText(R.string.player_1)
             player_tv.setTextColor(ContextCompat.getColor(this, R.color.colorAccent))
         }
@@ -197,16 +193,21 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
 
                     firstCard = true
                     //Si le score cumulé des 2 joueurs est égal à 10, je jeu s'arrête. Il faut donc afficher le gagnant
-                    if (p1score + p2score == 10){
-                        if (p1score > p2score){player_tv.setText(R.string.player_1_wins)}
-                       else if (p2score > p1score) {player_tv.setText(R.string.player_2_wins)}
-                        else if (p2score==p1score){player_tv.setText(R.string.egality)}
+                    if (p1score + p2score == 10) {
+                        if (p1score > p2score) {
+                            player_tv.setText(R.string.player_1_wins)
+                        } else if (p2score > p1score) {
+                            player_tv.setText(R.string.player_2_wins)
+                        } else if (p2score == p1score) {
+                            player_tv.setText(R.string.egality)
+                        }
 
 
-                    //Comme le jeu est terminé, on va faire en sorte qu'un clique n'importe où ramène à l'écran d'accueil
-                    game_contenair.setOnClickListener(){
-                        onBackPressed()
-                    }}
+                        //Comme le jeu est terminé, on va faire en sorte qu'un clique n'importe où ramène à l'écran d'accueil
+                        game_contenair.setOnClickListener() {
+                            onBackPressed()
+                        }
+                    }
                     //Si les deux cartes ne sont pas identiques
                 } else {
 
@@ -267,7 +268,7 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
     }
 
     override fun onBackPressed() {
-        player_tv.visibility=View.INVISIBLE
+        player_tv.visibility = View.INVISIBLE
         super.onBackPressed()
     }
 

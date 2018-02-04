@@ -24,19 +24,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         main_text_view.setText(R.string.main_text_view_content)
 
-        
+
         main_text_view.setOnClickListener {
             val intent = Intent(this@MainActivity, GameActivity::class.java)
-          //  player_nb.setText("")
-            var options : ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity,
-                         main_text_view,
-                         ViewCompat.getTransitionName(main_text_view));
+            //  player_nb.setText("")
+            var options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity,
+                    main_text_view,
+                    ViewCompat.getTransitionName(main_text_view));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 startActivity(intent, options.toBundle())
-            };  else startActivity(intent)
-            
-            
-        
+            }; else startActivity(intent)
+
+
         }
         var prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         var playerNumber: Int = prefs.getInt(SHAREDPREFERENCES_PLAYERS_KEY, 1)
