@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">SOUND MEMORY</string>
+    <string name="app_name">Sound Memory</string>
     <string name="sound">SOUND</string>
     <string name="memory">MEMORY</string>
-    <string name="main_text_view_content">JOUER</string>
-    <string name="un_joueur">1 joueur</string>
-    <string name="deux_joueurs">2 joueurs</string>
-    <string name="player_1">Joueur 1</string>
-    <string name="player_2">Joueur 2</string>
-    <string name="player_1_wins">Le joueur 1 gagne!</string>
-    <string name="player_2_wins">Le joueur 2 gagne!</string>
-    <string name="egality">Egalité!</string>
+    <string name="main_text_view_content">PLAY</string>
+    <string name="un_joueur">1 player</string>
+    <string name="deux_joueurs">2 players</string>
+    <string name="player_1">PLAYER 1</string>
+    <string name="player_2">PLAYER 2</string>
+    <string name="player_1_wins">Player 1 wins!</string>
+    <string name="player_2_wins">Player 2 wins!</string>
+    <string name="egality">Draw!</string>
 
 </resources>
