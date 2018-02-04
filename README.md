@@ -6,13 +6,18 @@ This program is a memory-like game where each player must reconstruct pairs of i
 
 All sounds used are royalty free. They come from www.Lasonotheque.org, http://www.flashkit.com and www.sound-fishing.net
 
-This program uses the Kotlin languag
+This program uses the Kotlin language.
+
+
+
 
 Ce programme est un jeu de mémoire de type "memory" où chaque joueur doit reconstituer des paires de cartes identique.Au contraire du jeu "memory" original, les images sont ici remplacées par des sons. Chaque tableau de jeu est généré aléatoirement en début de partie parmi plusieurs centaines de combinaisons possibles. 
 
 Tous les sons utilisés sont libres de droits. Ils sont issus des sites www.Lasonotheque.org, http://www.flashkit.com et www.sound-fishing.net
 
-Ce programme utilise le langage Kotlin
+Ce programme utilise le langage Kotlin.
+
+
 
 
 
