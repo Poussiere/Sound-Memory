@@ -21,11 +21,7 @@ import com.poussiere.hellokotlin.objects.Card
 
 class CardUtils {
 
-    //Create a methode that returns a mutableList of the 20 objects
-
-
-//Methode that determine each id card and song to play
-    //There are 2*10 cards.
+ 
 
     companion object {
         fun initCards(): MutableList<Card> {
@@ -92,8 +88,7 @@ class CardUtils {
 
             cardlist.shuffle()
             var smallCardlist: MutableList<Card> = cardlist.subList(0, 10) //Returns a view of the portion of this list between the specified fromIndex (inclusive) and toIndex (exclusive).
-            // var smallCardlist = mutableListOf<Card>()
-
+           
 
             for (i in 0..9) {
                 smallCardlist.add(cardlist[i])
