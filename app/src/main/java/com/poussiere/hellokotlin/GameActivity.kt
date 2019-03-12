@@ -31,9 +31,8 @@ import kotlinx.android.synthetic.main.activity_game.*
 
 class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHandler {
 
-
     // retrieve a mutableList of all Cards objects
-    var cardTab: MutableList<Card> = CardUtils.initCards()
+    val cardTab: MutableList<Card> = CardUtils.initCards()
     var songIsPlaying: Boolean = false
     var firstCard: Boolean = true
     var previousIndex = 1

@@ -15,5 +15,10 @@ package com.poussiere.hellokotlin.objects
         contact us : von.linnasta@gmail.com
 */
 
-data class Card(val id: Int, val song: Int, var checked: Boolean = false, var discovered: Boolean = false, var discovered2: Boolean = false,
-                var p1Won: Boolean = false, var p2Won: Boolean = false)
+data class Card(val id: Int,
+                val song: Int,
+                var checked: Boolean = false,
+                var discovered: Boolean = false,
+                var discovered2: Boolean = false,
+                var p1Won: Boolean = false,
+                var p2Won: Boolean = false)
