@@ -3,6 +3,7 @@ package com.poussiere.hellokotlin.utils
 import android.content.Context
 import android.media.MediaPlayer
 import android.util.Log
+import com.poussiere.hellokotlin.SoundMemoryApplication
 
 
 /*Copyright (C) <2018>  <Nicolas BOUTIN>
@@ -19,32 +20,28 @@ import android.util.Log
         contact us : von.linnasta@gmail.com
 */
 
-class Song (val context : Context?){
+class SoundHelper(private val context: Context) {
 
+    val mediaPlayer: MediaPlayer = MediaPlayer()
 
-    var mediaPlayer : MediaPlayer = MediaPlayer()
-
-    fun prepareSoundFile (song : Int) {
-
-            val songFile = context?.getResources()?.openRawResourceFd(song) ?: return
-            mediaPlayer.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
-            songFile.close()
-
-        }
-
-        //to be called a the end of each song
-        fun resetPlayer() {
-           mediaPlayer.stop()
-            mediaPlayer.reset()
-
-        }
-
-        //to be called when activity is destroyed
-        fun releasePlayer() {
-            mediaPlayer.release()
-
-        }
+    fun prepareSoundFile(song: Int) {
+        val songFile = context.resources?.openRawResourceFd(song) ?: return
+        mediaPlayer.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
+        songFile.close()
     }
+
+    //to be called a the end of each song
+    fun resetPlayer() {
+        mediaPlayer.stop()
+        mediaPlayer.reset()
+    }
+
+    //to be called when activity is destroyed
+    fun releasePlayer() {
+        mediaPlayer.release()
+
+    }
+}
 
 
 

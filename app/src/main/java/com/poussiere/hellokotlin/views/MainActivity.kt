@@ -13,7 +13,7 @@
         contact us : von.linnasta@gmail.com
 */
 
-package com.poussiere.hellokotlin
+package com.poussiere.hellokotlin.views
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -23,6 +23,7 @@ import android.preference.PreferenceManager
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
+import com.poussiere.hellokotlin.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 

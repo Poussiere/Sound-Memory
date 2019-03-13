@@ -1,4 +1,4 @@
-package com.poussiere.hellokotlin.objects
+package com.poussiere.hellokotlin.model
 
 
 /*Copyright (C) <2018>  <Nicolas BOUTIN>

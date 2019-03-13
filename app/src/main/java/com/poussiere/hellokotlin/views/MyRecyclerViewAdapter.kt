@@ -1,4 +1,4 @@
-package com.poussiere.hellokotlin
+package com.poussiere.hellokotlin.views
 
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.poussiere.hellokotlin.objects.Card
+import com.poussiere.hellokotlin.R
+import com.poussiere.hellokotlin.model.Card
 import kotlinx.android.synthetic.main.recycler_element.view.*
-
 
 /*Copyright (C) <2018>  <Nicolas BOUTIN>
         This program is free software: you can redistribute it and/or modify
@@ -38,16 +38,15 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
         fun doSomethingFromActivityWhenClick(index: Int)
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
-
-        var layoutView = LayoutInflater.from(parent?.getContext()).inflate(R.layout.recycler_element, null, false);
-        var viewHolder = MyViewHolder(layoutView);
+        val layoutView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_element, null, false);
+        val viewHolder = MyViewHolder(layoutView)
         return viewHolder;
     }
 
     override fun getItemCount(): Int {
-        return 20;
+        return 20
     }
 
 
@@ -55,12 +54,9 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
         return super.getItemId(position)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder?, position: Int) {
-
-        var card = myCardList[position]
-        holder?.bindItems(card);
-
-
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val card = myCardList[position]
+        holder.bindItems(card)
     }
 
     fun updateCardsList(cardList: MutableList<Card>) {
@@ -68,13 +64,13 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
     }
 
 
-    inner class MyViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         //similar to getContext in java
-        var context = itemView?.context;
+        private val context = itemView.context
 
 
         init {
-            itemView?.setOnClickListener(this)
+            itemView.setOnClickListener(this)
         }
 
 
@@ -82,8 +78,8 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
 
             // La hauteur des cellules est égale à leur largeur. Pour obtenir leur largeur, on divise par 4 la largeur de l'écran en pixel car il y a 4 cases par ligne
             //Cette largeur d'écran a été calculée dans la GameActivity et transmise via le constructeur
-            var layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen / 4)
-            itemView.song_card_image.setLayoutParams(layoutParams)
+            val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen / 4)
+            itemView.song_card_image.layoutParams = layoutParams
 
             itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
@@ -100,9 +96,7 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
         override fun onClick(p0: View?) {
             myClickHandler.doSomethingFromActivityWhenClick(adapterPosition)
         }
-
     }
-
 }
 
 

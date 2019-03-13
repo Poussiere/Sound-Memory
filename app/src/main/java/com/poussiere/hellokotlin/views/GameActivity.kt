@@ -1,4 +1,4 @@
-package com.poussiere.hellokotlin
+package com.poussiere.hellokotlin.views
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -7,10 +7,11 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
-import com.poussiere.hellokotlin.MainActivity.Companion.SHAREDPREFERENCES_PLAYERS_KEY
-import com.poussiere.hellokotlin.objects.Card
-import com.poussiere.hellokotlin.utils.CardUtils
-import com.poussiere.hellokotlin.utils.Song
+import com.poussiere.hellokotlin.views.MainActivity.Companion.SHAREDPREFERENCES_PLAYERS_KEY
+import com.poussiere.hellokotlin.R
+import com.poussiere.hellokotlin.model.Card
+import com.poussiere.hellokotlin.datasource.CardGame
+import com.poussiere.hellokotlin.utils.SoundHelper
 import kotlinx.android.synthetic.main.activity_game.*
 
 
@@ -32,13 +33,13 @@ import kotlinx.android.synthetic.main.activity_game.*
 class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHandler {
 
     // retrieve a mutableList of all Cards objects
-    val cardTab: MutableList<Card> = CardUtils.initCards()
+    val cardTab: MutableList<Card> = CardGame.initCards()
     var songIsPlaying: Boolean = false
     var firstCard: Boolean = true
     var previousIndex = 1
     var actualIndex = 1
     var myRecyclerViewAdapter: MyRecyclerViewAdapter? = null
-    var player: Song = Song(this)
+    var player: SoundHelper = SoundHelper(this)
     var playerNumber = 1
     //is it player 1 turn?
     var p1Turn = true

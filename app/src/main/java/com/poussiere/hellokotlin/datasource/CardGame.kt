@@ -1,8 +1,8 @@
-package com.poussiere.hellokotlin.utils
+package com.poussiere.hellokotlin.datasource
 
 import android.util.Log
 import com.poussiere.hellokotlin.R
-import com.poussiere.hellokotlin.objects.Card
+import com.poussiere.hellokotlin.model.Card
 
 /*Copyright (C) <2018>  <Nicolas BOUTIN>
         This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@ import com.poussiere.hellokotlin.objects.Card
         contact us : von.linnasta@gmail.com
 */
 
-class CardUtils {
+class CardGame {
 
     /**
      * Instanciate an empty array that will stock all possible cards with corresponding songs
@@ -93,46 +93,8 @@ class CardUtils {
         }
     }
 
-    /**
-     * Get small card game
-     */
-    fun getSmallCardGame(): MutableList<Card>{
-        //Mix the cards
-        cardList.shuffle()
-        //Take the first ten cards of the mixed list
-        val smallCardList: MutableList<Card> = cardList.subList(0, 10)
-        for (i in 0..9) {
-            smallCardList.add(cardList[i])
-        }
-        return smallCardList
-    }
-
-    /**
-     * Get medium card game
-     */
-    fun getMediumCardGame(): MutableList<Card> {
-        //Mix the cards
-        cardList.shuffle()
-        //Take the first ten cards of the mixed list
-        val mediumCardList: MutableList<Card> = cardList.subList(0, 10)
-        for (i in 0..9) {
-            mediumCardList.add(cardList[i])
-        }
-        return mediumCardList
-    }
-
-    /**
-     * Get big card game
-     */
-    fun getBigCardGame(): MutableList<Card> {
-        //Mix the cards
-        cardList.shuffle()
-        //Take the first ten cards of the mixed list
-        val bigCardList: MutableList<Card> = cardList.subList(0, 10)
-        for (i in 0..9) {
-            bigCardList.add(cardList[i])
-        }
-        return bigCardList
+    fun getCardList(): MutableList<Card>{
+        return cardList
     }
 }
 
