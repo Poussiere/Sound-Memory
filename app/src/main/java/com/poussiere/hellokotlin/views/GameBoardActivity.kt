@@ -7,7 +7,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
-import com.poussiere.hellokotlin.views.MainActivity.Companion.SHAREDPREFERENCES_PLAYERS_KEY
 import com.poussiere.hellokotlin.R
 import com.poussiere.hellokotlin.model.Card
 import com.poussiere.hellokotlin.datasource.CardGame
@@ -30,7 +29,7 @@ import kotlinx.android.synthetic.main.activity_game.*
         contact us : von.linnasta@gmail.com
 */
 
-class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHandler {
+class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHandler {
 
     // retrieve a mutableList of all Cards objects
     val cardTab: MutableList<Card> = CardGame.initCards()
@@ -64,17 +63,13 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
             player_tv.setTextColor(ContextCompat.getColor(this, R.color.colorAccent))
         }
 
-
         //Configure recycler view in GrilLayout
         game_board.setHasFixedSize(true)
-        val gridLayoutManager = GridLayoutManager(this@GameActivity, 4) // 3 = number of items on each row
+        val gridLayoutManager = GridLayoutManager(this@GameBoardActivity, 4) // 3 = number of items on each row
         game_board.setLayoutManager(gridLayoutManager)
         myRecyclerViewAdapter = MyRecyclerViewAdapter(cardTab, this, screenWidth())
         game_board.setAdapter(myRecyclerViewAdapter)
-
-
     }
-
 
     override fun doSomethingFromActivityWhenClick(index: Int) {
         // Le clique ne va réagir que si la carte cliquée n'a pas encore été découverte et que si la lecture d'un son n'est pas en cours
@@ -89,7 +84,6 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
                     } else {
                         doWhenSecondClickTwoPlayer(index)
                     }
-
                 }
             }
         }
@@ -129,16 +123,16 @@ class GameActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHa
         if (actualIndex == previousIndex) return
 
         songIsPlaying = true
-        cardTab[index].checked = true;
+        cardTab[index].checked = true
         myRecyclerViewAdapter?.updateCardsList(cardTab)
         myRecyclerViewAdapter?.notifyItemChanged(index)
 
         player.prepareSoundFile(cardTab[actualIndex].song)
         player.mediaPlayer.prepareAsync()
-        player.mediaPlayer.setOnPreparedListener() {
+        player.mediaPlayer.setOnPreparedListener {
             player.mediaPlayer.start()
 
-            player.mediaPlayer.setOnCompletionListener() {
+            player.mediaPlayer.setOnCompletionListener {
                 player.resetPlayer()
 
                 if (cardTab[previousIndex].id == cardTab[actualIndex].id) {

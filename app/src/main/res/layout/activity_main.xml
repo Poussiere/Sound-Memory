@@ -1,82 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/conteneur">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.poussiere.hellokotlin.views.HomeViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/conteneur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/sound_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/memory_tv"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="55dp"
+            android:text="@string/sound"
+            android:textAppearance="@style/TitleTextViewStyle" />
+
+        <TextView
+            android:id="@+id/memory_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_text_view"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="55dp"
+            android:layout_marginBottom="35dp"
+            android:text="@string/memory"
+            android:textAppearance="@style/TitleTextViewStyle" />
 
 
-    <TextView
-        android:id="@+id/sound_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sound"
-        android:textAppearance="@style/TitleTextViewStyle"
-        android:layout_marginLeft="55dp"
-        android:layout_alignParentLeft="true"
-        android:layout_above="@+id/memory_tv"
-       />
+        <TextView
+            android:id="@+id/main_text_view"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="@string/main_text_view_content"
+            android:textAppearance="@style/TextViewStyle"
+            android:textColor="@color/colorChecked"
+            android:transitionName="transition_wow"
+            android:onClick="@{() -> viewModel.onMainViewClick.onNext(true)}"
+            tools:ignore="UnusedAttribute" />
 
-    <TextView
-        android:id="@+id/memory_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="@string/memory"
-        android:textAppearance="@style/TitleTextViewStyle"
-       android:layout_marginRight="55dp"
-        android:layout_above="@+id/main_text_view"
-        android:layout_marginBottom="35dp"/>
+        <View
+            android:id="@+id/carre2"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/main_text_view"
+            android:layout_toLeftOf="@+id/main_text_view"
+            android:background="@color/colorAccent" />
 
+        <View
+            android:id="@+id/carre3"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_below="@id/main_text_view"
+            android:layout_toRightOf="@id/main_text_view"
+            android:background="@color/colorAccent" />
 
-    <TextView
-        android:layout_marginTop="50dp"
-        android:id="@+id/main_text_view"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:textAppearance="@style/TextViewStyle"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:text="@string/main_text_view_content"
-        android:transitionName="transition_wow"
-        tools:ignore="UnusedAttribute"
-        android:textColor="@color/colorChecked"
-        android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/player_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:paddingLeft="40dp"
+            android:paddingBottom="30dp"
+            android:textAppearance="@style/TextViewStyle"
+            android:text="@{viewModel.playerCountTextView.value}"
+            android:onClick="@{() -> viewModel.onPlayerCountClick()}"
+            tools:text="1 joueur" />
 
-    <View
-        android:id="@+id/carre2"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/main_text_view"
-        android:layout_toStartOf="@+id/main_text_view"
-        android:background="@color/colorAccent" />
-
-    <View
-        android:id="@+id/carre3"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:background="@color/colorAccent"
-        android:layout_toRightOf="@id/main_text_view"
-        android:layout_below="@id/main_text_view"
-        />
-
-
-    <TextView
-        android:id="@+id/player_nb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:clickable="true"
-        android:paddingBottom="30dp"
-        android:paddingLeft="40dp"
-        android:textAppearance="@style/TextViewStyle"
-        tools:text="1 joueur" />
-
-
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

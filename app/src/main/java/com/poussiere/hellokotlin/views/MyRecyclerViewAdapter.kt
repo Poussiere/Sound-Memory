@@ -77,7 +77,7 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
         fun bindItems(card: Card) {
 
             // La hauteur des cellules est égale à leur largeur. Pour obtenir leur largeur, on divise par 4 la largeur de l'écran en pixel car il y a 4 cases par ligne
-            //Cette largeur d'écran a été calculée dans la GameActivity et transmise via le constructeur
+            //Cette largeur d'écran a été calculée dans la GameBoardActivity et transmise via le constructeur
             val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen / 4)
             itemView.song_card_image.layoutParams = layoutParams
 
