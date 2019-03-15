@@ -65,7 +65,6 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
 
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        //similar to getContext in java
         private val context = itemView.context
 
 

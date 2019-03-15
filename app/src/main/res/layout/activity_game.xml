@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.support.v4.content.ContextCompat"/>
         <variable
             name="viewModel"
             type="com.poussiere.hellokotlin.views.GameBoardViewModel" />
@@ -23,6 +24,8 @@
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical"
             android:transitionName="transition_wow"
+            android:clickable="@{viewModel.gameBoardClickable.value}"
+            android:onClick="@{() -> viewModel.onBoardClick()}"
             tools:ignore="UnusedAttribute">
 
             <android.support.v7.widget.RecyclerView
@@ -36,7 +39,9 @@
                 android:gravity="center"
                 android:paddingTop="16dp"
                 android:textSize="25dp"
-                android:visibility="gone"
+                android:textColor="@{ContextCompat.getColor(context, viewModel.playerTvColor.value)}"
+                android:text="@{viewModel.playerTv.value}"
+                android:visibility="@{viewModel.playerTvVisibility.value == true ? 0: 1}"
                 tools:text="Joueur 2" />
         </LinearLayout>
     </LinearLayout>

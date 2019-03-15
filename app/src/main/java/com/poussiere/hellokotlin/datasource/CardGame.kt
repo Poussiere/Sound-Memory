@@ -21,14 +21,13 @@ import com.poussiere.hellokotlin.model.Card
 class CardGame {
 
     /**
-     * Instanciate an empty array that will stock all possible cards with corresponding songs
+     * Initialize the whole cards and return the card list
      */
-    private val cardList = mutableListOf<Card>()
 
-    /**
-     * Initialize the whole cards
-     */
-    fun initCards() {
+    fun getCardList(): MutableList<Card> {
+        //Instanciate an empty array that will stock all possible cards with corresponding songs
+
+        val cardList = mutableListOf<Card>()
         //Create each card with corresponding songs
         with(cardList) {
             add(Card(1, R.raw.bang))
@@ -83,17 +82,6 @@ class CardGame {
             add(Card(50, R.raw.whee))
             add(Card(51, R.raw.wilem))
         }
-        //Mix the cards
-        cardList.shuffle()
-        //Take the first ten cards of the mixed list
-        val smallCardlist: MutableList<Card> = cardList.subList(0, 10)
-        for (i in 0..9) {
-            smallCardlist.add(cardList[i])
-            Log.i("cardutils", smallCardlist[i].id.toString())
-        }
-    }
-
-    fun getCardList(): MutableList<Card>{
         return cardList
     }
 }

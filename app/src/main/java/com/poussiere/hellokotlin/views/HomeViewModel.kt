@@ -2,11 +2,7 @@ package com.poussiere.hellokotlin.views
 
 import android.arch.lifecycle.ViewModel
 import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
-import android.preference.PreferenceManager
 import com.poussiere.hellokotlin.R
-import com.poussiere.hellokotlin.utils.Constants
 import com.poussiere.hellokotlin.utils.SharedPreferencesHelper
 import com.poussiere.hellokotlin.utils.ViewModelField
 import io.reactivex.subjects.PublishSubject

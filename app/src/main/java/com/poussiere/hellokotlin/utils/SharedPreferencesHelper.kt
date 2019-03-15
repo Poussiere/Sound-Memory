@@ -4,7 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
-class SharedPreferencesHelper(val applicationContext: Context) {
+class SharedPreferencesHelper(private val applicationContext: Context) {
+
     private val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
 
     fun getPlayerCount(): Int{

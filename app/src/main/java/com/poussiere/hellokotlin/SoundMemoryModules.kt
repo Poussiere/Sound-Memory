@@ -18,5 +18,5 @@ val soundMemoryModules = module {
     single { CardsRepository(get()) }
     single { SharedPreferencesHelper(get())}
     viewModel { HomeViewModel(get(), get()) }
-    viewModel { GameBoardViewModel() }
+    viewModel { GameBoardViewModel(get(), get(), get()) }
 }
