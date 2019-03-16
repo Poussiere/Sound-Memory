@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.poussiere.hellokotlin.views.HomeViewModel" />
@@ -35,7 +36,6 @@
             android:text="@string/memory"
             android:textAppearance="@style/TitleTextViewStyle" />
 
-
         <TextView
             android:id="@+id/main_text_view"
             android:layout_width="110dp"
@@ -44,11 +44,11 @@
             android:layout_marginTop="50dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
+            android:onClick="@{() -> viewModel.onMainViewClick.onNext(true)}"
             android:text="@string/main_text_view_content"
             android:textAppearance="@style/TextViewStyle"
             android:textColor="@color/colorChecked"
             android:transitionName="transition_wow"
-            android:onClick="@{() -> viewModel.onMainViewClick.onNext(true)}"
             tools:ignore="UnusedAttribute" />
 
         <View
@@ -69,6 +69,22 @@
             android:background="@color/colorAccent" />
 
         <TextView
+            android:id="@+id/difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/player_count"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:onClick="@{() -> viewModel.onDifficultyClick()}"
+            android:paddingLeft="40dp"
+            android:paddingBottom="5dp"
+            android:text="@{viewModel.difficultyTextView.value}"
+            android:textAppearance="@style/TextViewStyle"
+            android:textColor="@color/colorPrimary"
+            tools:text="normal" />
+
+        <TextView
             android:id="@+id/player_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,11 +92,11 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:clickable="true"
+            android:onClick="@{() -> viewModel.onPlayerCountClick()}"
             android:paddingLeft="40dp"
             android:paddingBottom="30dp"
-            android:textAppearance="@style/TextViewStyle"
             android:text="@{viewModel.playerCountTextView.value}"
-            android:onClick="@{() -> viewModel.onPlayerCountClick()}"
+            android:textAppearance="@style/TextViewStyle"
             tools:text="1 joueur" />
 
     </RelativeLayout>

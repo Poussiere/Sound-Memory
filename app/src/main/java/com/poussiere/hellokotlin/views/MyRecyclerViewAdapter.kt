@@ -25,12 +25,13 @@ import kotlinx.android.synthetic.main.recycler_element.view.*
         contact us : von.linnasta@gmail.com
 */
 
-class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOnClickHandler, screenWidth: Int) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
+class MyRecyclerViewAdapter(cardList: MutableList<Card>, spanCount: Int, clickHandler: AdapterOnClickHandler, screenWidth: Int) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
     //La liste des cartes récupérée dans le constructeur
     var myCardList: MutableList<Card> = cardList
     var screen = screenWidth
     var myClickHandler: AdapterOnClickHandler = clickHandler
+    var sCount = spanCount
 
 
     interface AdapterOnClickHandler {
@@ -41,14 +42,13 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         val layoutView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_element, null, false);
-        val viewHolder = MyViewHolder(layoutView)
-        return viewHolder;
+        val viewHolder = MyViewHolder(layoutView, sCount)
+        return viewHolder
     }
 
     override fun getItemCount(): Int {
-        return 20
+        return myCardList.size
     }
-
 
     override fun getItemId(position: Int): Long {
         return super.getItemId(position)
@@ -63,11 +63,9 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
         myCardList = cardList
     }
 
-
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class MyViewHolder(itemView: View, spanCount: Int) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val context = itemView.context
-
-
+        var sCount = spanCount
         init {
             itemView.setOnClickListener(this)
         }
@@ -77,13 +75,12 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, clickHandler: AdapterOn
 
             // La hauteur des cellules est égale à leur largeur. Pour obtenir leur largeur, on divise par 4 la largeur de l'écran en pixel car il y a 4 cases par ligne
             //Cette largeur d'écran a été calculée dans la GameBoardActivity et transmise via le constructeur
-            val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen / 4)
+            val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen / sCount)
             itemView.song_card_image.layoutParams = layoutParams
-
             itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
             if (card.discovered || card.discovered2) {
-                if (card.discovered) itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
+                if (card.discovered)itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
                 if (card.discovered2) itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPlayer2))
             } else if (card.checked) {
                 itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))

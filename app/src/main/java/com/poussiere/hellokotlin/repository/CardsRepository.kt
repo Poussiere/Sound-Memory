@@ -3,12 +3,20 @@ package com.poussiere.hellokotlin.repository
 import com.poussiere.hellokotlin.datasource.CardGame
 import com.poussiere.hellokotlin.model.Card
 
-class CardsRepository (private val cardGame: CardGame) {
+class CardsRepository(private val cardGame: CardGame) {
+
+    //Score that has to be reached by the two player to finish game
+    private var winningScore = 10
+
+    fun getWinningScore(): Int {
+        return winningScore
+    }
 
     /**
      * Get small card game (for easy mode)
      */
-    fun getSmallCardGame(): MutableList<Card>{
+    fun getSmallCardGame(): MutableList<Card> {
+        winningScore = 6
         //Get full card list from cart game data source
         val cardList = cardGame.getCardList()
         //Mix the cards
@@ -25,6 +33,7 @@ class CardsRepository (private val cardGame: CardGame) {
      * Get medium card game (for medium mode)
      */
     fun getMediumCardGame(): MutableList<Card> {
+        winningScore = 10
         //Get full card list from cart game data source
         val cardList = cardGame.getCardList()
         //Mix the cards
@@ -41,6 +50,7 @@ class CardsRepository (private val cardGame: CardGame) {
      * Get big card game (for hard mode)
      */
     fun getBigCardGame(): MutableList<Card> {
+        winningScore = 15
         //Get full card list from cart game data source
         val cardList = cardGame.getCardList()
         //Mix the cards
@@ -51,5 +61,22 @@ class CardsRepository (private val cardGame: CardGame) {
             bigCardList.add(cardList[i])
         }
         return bigCardList
+    }
+
+    /**
+     * Get big card game (for hard mode)
+     */
+    fun getImpossibleCardGame(): MutableList<Card> {
+        winningScore = 21
+        //Get full card list from cart game data source
+        val cardList = cardGame.getCardList()
+        //Mix the cards
+        cardList.shuffle()
+        //Take the first 15 cards of the mixed list
+        val impossibleCardList: MutableList<Card> = cardList.subList(0, 21)
+        for (i in 0..20) {
+            impossibleCardList.add(cardList[i])
+        }
+        return impossibleCardList
     }
 }

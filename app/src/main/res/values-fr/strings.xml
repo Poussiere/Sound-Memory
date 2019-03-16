@@ -10,5 +10,9 @@
     <string name="player_1_wins">Le joueur 1 gagne!</string>
     <string name="player_2_wins">Le joueur 2 gagne!</string>
     <string name="egality">Egalité!</string>
+    <string name="easy">Facile</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Difficile</string>
+    <string name="impossible">Impossible!</string>
 
 </resources>

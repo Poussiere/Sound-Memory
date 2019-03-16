@@ -15,4 +15,13 @@ class SharedPreferencesHelper(private val applicationContext: Context) {
     fun setPlayerCount(playerCount: Int){
         prefs.edit().putInt(Constants.SHAREDPREFERENCES_PLAYERS_KEY, playerCount).apply()
     }
+
+    fun setDifficulty(difficulty: Constants.Difficulty){
+        prefs.edit().putInt(Constants.SHAREDPREFERENCES_DIFFICULTY_KEY, difficulty.ordinal).apply()
+    }
+
+    fun getDifficulty(): Constants.Difficulty{
+        val ordinal = prefs.getInt(Constants.SHAREDPREFERENCES_DIFFICULTY_KEY, Constants.Difficulty.MEDIUM.ordinal)
+        return Constants.Difficulty.values()[ordinal]
+    }
 }

@@ -24,8 +24,7 @@
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical"
             android:transitionName="transition_wow"
-            android:clickable="@{viewModel.gameBoardClickable.value}"
-            android:onClick="@{() -> viewModel.onBoardClick()}"
+            android:clickable="true"
             tools:ignore="UnusedAttribute">
 
             <android.support.v7.widget.RecyclerView
