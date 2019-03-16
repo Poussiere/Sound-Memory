@@ -1,9 +1,5 @@
 package com.poussiere.hellokotlin.datasource
 
-import android.util.Log
-import com.poussiere.hellokotlin.R
-import com.poussiere.hellokotlin.model.Card
-
 /*Copyright (C) <2018>  <Nicolas BOUTIN>
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -18,6 +14,9 @@ import com.poussiere.hellokotlin.model.Card
         contact us : von.linnasta@gmail.com
 */
 
+import com.poussiere.hellokotlin.R
+import com.poussiere.hellokotlin.model.Card
+
 class CardGame {
 
     /**
@@ -26,7 +25,6 @@ class CardGame {
 
     fun getCardList(): MutableList<Card> {
         //Instanciate an empty array that will stock all possible cards with corresponding songs
-
         val cardList = mutableListOf<Card>()
         //Create each card with corresponding songs
         with(cardList) {

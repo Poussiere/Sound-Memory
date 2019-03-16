@@ -52,7 +52,7 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
         }
 
         playerNumber = prefs.getPlayerCount()
-        //S'il y a deux joueurs, on va afficher le joueur dont c'est le tour en bas*
+        //S'il y a deux joueurs, on va afficher le joueur dont c'est le tour en bas
         if (playerNumber == 2) {
             playerTvVisibility.value = true
             playerTv.value = applicationContext.getString(R.string.player_1)
@@ -113,7 +113,6 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
                 }
 
                 firstCard = true
-
 
                 //On actualise la vue
                 myRecyclerViewAdapter?.updateCardsList(cardTab)

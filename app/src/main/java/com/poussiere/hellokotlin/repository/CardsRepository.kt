@@ -26,6 +26,7 @@ class CardsRepository(private val cardGame: CardGame) {
         for (i in 0..5) {
             smallCardList.add(cardList[i])
         }
+        smallCardList.shuffle()
         return smallCardList
     }
 
@@ -40,9 +41,11 @@ class CardsRepository(private val cardGame: CardGame) {
         cardList.shuffle()
         //Take the first 10 cards of the mixed list
         val mediumCardList: MutableList<Card> = cardList.subList(0, 10)
+        //duplicate the first 10 cards
         for (i in 0..9) {
             mediumCardList.add(cardList[i])
         }
+        mediumCardList.shuffle()
         return mediumCardList
     }
 
@@ -60,6 +63,7 @@ class CardsRepository(private val cardGame: CardGame) {
         for (i in 0..14) {
             bigCardList.add(cardList[i])
         }
+        bigCardList.shuffle()
         return bigCardList
     }
 
@@ -77,6 +81,7 @@ class CardsRepository(private val cardGame: CardGame) {
         for (i in 0..20) {
             impossibleCardList.add(cardList[i])
         }
+        impossibleCardList.shuffle()
         return impossibleCardList
     }
 }

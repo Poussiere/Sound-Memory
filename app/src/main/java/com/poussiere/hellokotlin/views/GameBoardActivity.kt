@@ -42,7 +42,7 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
         gameViewModel.setGameBoard()
 
         //Configure recycler view in GrilLayout
-        game_board.setHasFixedSize(false)
+        game_board.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this@GameBoardActivity, gameViewModel.getSpanCount())
         game_board.layoutManager = gridLayoutManager
         gameViewModel.myRecyclerViewAdapter = MyRecyclerViewAdapter(gameViewModel.cardTab,gameViewModel.getSpanCount(), this, gameViewModel.screenWidth())
