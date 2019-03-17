@@ -18,7 +18,7 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
     val playerTv = ViewModelField("")
     val playerTvVisibility = ViewModelField(false)
     val playerTvColor = ViewModelField(R.color.colorAccent)
-    var isGameFinished = false
+    val isGameFinished = ViewModelField(false)
     // retrieve a mutableList of all Cards objects
     var cardTab: MutableList<Card> = mutableListOf()
     var songIsPlaying: Boolean = false
@@ -43,7 +43,7 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
     }
 
     fun setGameBoard() {
-
+        isGameFinished.value = false
         cardTab = when (prefs.getDifficulty()) {
             Constants.Difficulty.EASY -> cardsRepo.getSmallCardGame()
             Constants.Difficulty.MEDIUM -> cardsRepo.getMediumCardGame()
@@ -106,12 +106,16 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
                 if (cardTab[previousIndex].id == cardTab[actualIndex].id) {
                     cardTab[previousIndex].discovered = true
                     cardTab[actualIndex].discovered = true
+                    p1score += 1
                 } else {
 
                     cardTab[previousIndex].checked = false
                     cardTab[actualIndex].checked = false
                 }
 
+                if(p1score == cardsRepo.getWinningScore()){
+                    isGameFinished.value = true
+                }
                 firstCard = true
 
                 //On actualise la vue
@@ -176,7 +180,7 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
                         //Comme le jeu est terminé, on va faire en sorte qu'un clique n'importe où ramène à l'écran d'accueil
 
                         //Comme le jeu est terminé, on va faire en sorte qu'un clique n'importe où ramène à l'écran d'accueil
-                        isGameFinished = true
+                        isGameFinished.value = true
                     }
                     //Si les deux cartes ne sont pas identiques
                 } else {

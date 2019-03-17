@@ -42,6 +42,14 @@
                 android:text="@{viewModel.playerTv.value}"
                 android:visibility="@{viewModel.playerTvVisibility.value == true ? 0: 1}"
                 tools:text="Joueur 2" />
+            <ImageView
+                android:id="@+id/home_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:src="@drawable/ic_home_black_24dp"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 </layout>

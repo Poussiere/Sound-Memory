@@ -21,6 +21,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.poussiere.hellokotlin.R
 import com.poussiere.hellokotlin.databinding.ActivityGameBinding
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_game.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -30,6 +31,11 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
      * Injected ViewModel
      */
     private val gameViewModel: GameBoardViewModel by viewModel()
+
+    /**
+     * A disposable to dispose of observers
+     */
+    private val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +53,16 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
         game_board.layoutManager = gridLayoutManager
         gameViewModel.myRecyclerViewAdapter = MyRecyclerViewAdapter(gameViewModel.cardTab,gameViewModel.getSpanCount(), this, gameViewModel.screenWidth())
         game_board.adapter=gameViewModel.myRecyclerViewAdapter
+
+        home_img.setOnClickListener {
+            onBackPressed()
+        }
+        disposables.add(
+                gameViewModel.isGameFinished.onChange.subscribe{
+                    home_img.visibility = View.VISIBLE
+                }
+        )
+        home_img.visibility = View.GONE
     }
 
     override fun doSomethingFromActivityWhenClick(index: Int) {
