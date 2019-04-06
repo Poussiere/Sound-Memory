@@ -15,6 +15,7 @@ package com.poussiere.hellokotlin.views
 */
 
 import android.databinding.DataBindingUtil
+import android.graphics.Rect
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
@@ -39,6 +40,13 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Make app full screen
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
 
         //Set databinding
         val binding = DataBindingUtil.setContentView<ActivityGameBinding>(this,
@@ -51,7 +59,7 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
         game_board.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this@GameBoardActivity, gameViewModel.getSpanCount())
         game_board.layoutManager = gridLayoutManager
-        gameViewModel.myRecyclerViewAdapter = MyRecyclerViewAdapter(gameViewModel.cardTab,gameViewModel.getSpanCount(), this, gameViewModel.screenWidth())
+        gameViewModel.myRecyclerViewAdapter = MyRecyclerViewAdapter(gameViewModel.cardTab,gameViewModel.getSpanCount(), this, getScreenWidth())
         game_board.adapter=gameViewModel.myRecyclerViewAdapter
 
         home_img.setOnClickListener {
@@ -98,5 +106,12 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
         super.onBackPressed()
        // gameViewModel.setGameBoard()
         player_tv.visibility = View.INVISIBLE
+    }
+
+    fun getScreenWidth(): Int {
+        val decorView = window.decorView
+        val r = Rect()
+        decorView.getWindowVisibleDisplayFrame(r)
+        return r.right
     }
 }

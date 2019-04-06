@@ -27,7 +27,6 @@ import kotlinx.android.synthetic.main.recycler_element.view.*
 
 class MyRecyclerViewAdapter(cardList: MutableList<Card>, spanCount: Int, clickHandler: AdapterOnClickHandler, screenWidth: Int) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
-    //La liste des cartes récupérée dans le constructeur
     var myCardList: MutableList<Card> = cardList
     var screen = screenWidth
     var myClickHandler: AdapterOnClickHandler = clickHandler
@@ -40,18 +39,12 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, spanCount: Int, clickHa
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-
-        val layoutView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_element, null, false);
-        val viewHolder = MyViewHolder(layoutView, sCount)
-        return viewHolder
+        val layoutView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_element, null, false)
+        return MyViewHolder(layoutView, sCount)
     }
 
     override fun getItemCount(): Int {
         return myCardList.size
-    }
-
-    override fun getItemId(position: Int): Long {
-        return super.getItemId(position)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -77,7 +70,7 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, spanCount: Int, clickHa
             //Cette largeur d'écran a été calculée dans la GameBoardActivity et transmise via le constructeur
             val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen / sCount)
             itemView.song_card_image.layoutParams = layoutParams
-            itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
             if (card.discovered || card.discovered2) {
                 if (card.discovered)itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))

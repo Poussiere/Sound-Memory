@@ -208,9 +208,10 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
             }
         }
     }
-
+/*
     fun screenWidth(): Int {
         val displayMetrics = applicationContext.resources.displayMetrics
         return displayMetrics.widthPixels
     }
+    */
 }
