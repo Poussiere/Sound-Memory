@@ -1,7 +1,7 @@
 package com.poussiere.hellokotlin.utils
 
-import android.databinding.BindingConversion
-import android.support.v4.content.ContextCompat
+import androidx.databinding.BindingConversion
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.widget.TextView
 import com.poussiere.hellokotlin.R

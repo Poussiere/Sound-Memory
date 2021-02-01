@@ -1,12 +1,11 @@
 package com.poussiere.hellokotlin.views
 
-import android.app.Activity
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import android.content.Context
 import com.poussiere.hellokotlin.R
 import com.poussiere.hellokotlin.model.Card
 import com.poussiere.hellokotlin.repository.CardsRepository
-import com.poussiere.hellokotlin.utils.Constants
+import com.poussiere.hellokotlin.utils.Difficulty
 import com.poussiere.hellokotlin.utils.SharedPreferencesHelper
 import com.poussiere.hellokotlin.utils.SoundHelper
 import com.poussiere.hellokotlin.utils.ViewModelField
@@ -35,20 +34,20 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
 
     fun getSpanCount(): Int {
         return when (prefs.getDifficulty()) {
-            Constants.Difficulty.EASY -> 3
-            Constants.Difficulty.MEDIUM -> 4
-            Constants.Difficulty.HARD -> 5
-            Constants.Difficulty.IMPOSSIBLE -> 6
+            Difficulty.EASY -> 3
+            Difficulty.MEDIUM -> 4
+            Difficulty.HARD -> 5
+            Difficulty.IMPOSSIBLE -> 6
         }
     }
 
     fun setGameBoard() {
         isGameFinished.value = false
         cardTab = when (prefs.getDifficulty()) {
-            Constants.Difficulty.EASY -> cardsRepo.getSmallCardGame()
-            Constants.Difficulty.MEDIUM -> cardsRepo.getMediumCardGame()
-            Constants.Difficulty.HARD -> cardsRepo.getBigCardGame()
-            Constants.Difficulty.IMPOSSIBLE -> cardsRepo.getImpossibleCardGame()
+            Difficulty.EASY -> cardsRepo.getSmallCardGame()
+            Difficulty.MEDIUM -> cardsRepo.getMediumCardGame()
+            Difficulty.HARD -> cardsRepo.getBigCardGame()
+            Difficulty.IMPOSSIBLE -> cardsRepo.getImpossibleCardGame()
         }
 
         playerNumber = prefs.getPlayerCount()

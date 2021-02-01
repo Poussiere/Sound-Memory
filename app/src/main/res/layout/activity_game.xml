@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.support.v4.content.ContextCompat"/>
+        <import type="androidx.core.content.ContextCompat"/>
         <variable
             name="viewModel"
             type="com.poussiere.hellokotlin.views.GameBoardViewModel" />
@@ -27,7 +27,7 @@
             android:clickable="true"
             tools:ignore="UnusedAttribute">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/game_board"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

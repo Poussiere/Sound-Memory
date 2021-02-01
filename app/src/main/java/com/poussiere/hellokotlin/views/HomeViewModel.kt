@@ -1,9 +1,9 @@
 package com.poussiere.hellokotlin.views
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import android.content.Context
 import com.poussiere.hellokotlin.R
-import com.poussiere.hellokotlin.utils.Constants
+import com.poussiere.hellokotlin.utils.Difficulty
 import com.poussiere.hellokotlin.utils.SharedPreferencesHelper
 import com.poussiere.hellokotlin.utils.ViewModelField
 import io.reactivex.subjects.PublishSubject
@@ -21,10 +21,10 @@ class HomeViewModel(val applicationContext: Context, val prefs: SharedPreference
         }
 
         when (prefs.getDifficulty()) {
-            Constants.Difficulty.EASY -> difficultyTextView.value = applicationContext.getString(R.string.easy)
-            Constants.Difficulty.MEDIUM -> difficultyTextView.value = applicationContext.getString(R.string.normal)
-            Constants.Difficulty.HARD -> difficultyTextView.value = applicationContext.getString(R.string.hard)
-            Constants.Difficulty.IMPOSSIBLE -> difficultyTextView.value = applicationContext.getString(R.string.impossible)
+            Difficulty.EASY -> difficultyTextView.value = applicationContext.getString(R.string.easy)
+            Difficulty.MEDIUM -> difficultyTextView.value = applicationContext.getString(R.string.normal)
+            Difficulty.HARD -> difficultyTextView.value = applicationContext.getString(R.string.hard)
+            Difficulty.IMPOSSIBLE -> difficultyTextView.value = applicationContext.getString(R.string.impossible)
         }
     }
 
@@ -43,22 +43,22 @@ class HomeViewModel(val applicationContext: Context, val prefs: SharedPreference
 
     fun onDifficultyClick() {
         when (prefs.getDifficulty()) {
-            Constants.Difficulty.EASY -> {
+            Difficulty.EASY -> {
                 difficultyTextView.value = applicationContext.getString(R.string.normal)
-                prefs.setDifficulty(Constants.Difficulty.MEDIUM)
+                prefs.setDifficulty(Difficulty.MEDIUM)
             }
-            Constants.Difficulty.MEDIUM ->{
+            Difficulty.MEDIUM -> {
                 difficultyTextView.value = applicationContext.getString(R.string.hard)
-                prefs.setDifficulty(Constants.Difficulty.HARD)
+                prefs.setDifficulty(Difficulty.HARD)
             }
-            Constants.Difficulty.HARD ->{
+            Difficulty.HARD -> {
                 difficultyTextView.value = applicationContext.getString(R.string.impossible)
-                prefs.setDifficulty(Constants.Difficulty.IMPOSSIBLE)
+                prefs.setDifficulty(Difficulty.IMPOSSIBLE)
 
             }
-            Constants.Difficulty.IMPOSSIBLE ->{
+            Difficulty.IMPOSSIBLE -> {
                 difficultyTextView.value = applicationContext.getString(R.string.easy)
-                prefs.setDifficulty(Constants.Difficulty.EASY)
+                prefs.setDifficulty(Difficulty.EASY)
             }
         }
     }

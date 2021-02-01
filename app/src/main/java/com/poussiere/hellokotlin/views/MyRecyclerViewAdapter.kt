@@ -1,7 +1,7 @@
 package com.poussiere.hellokotlin.views
 
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.poussiere.hellokotlin.R
 import com.poussiere.hellokotlin.model.Card
-import kotlinx.android.synthetic.main.recycler_element.view.*
 
 /*Copyright (C) <2018>  <Nicolas BOUTIN>
         This program is free software: you can redistribute it and/or modify
@@ -59,26 +58,28 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, spanCount: Int, clickHa
     inner class MyViewHolder(itemView: View, spanCount: Int) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val context = itemView.context
         var sCount = spanCount
+
         init {
             itemView.setOnClickListener(this)
         }
 
+        private val songCardImage: View = itemView.findViewById(R.id.song_card_image)
 
         fun bindItems(card: Card) {
 
             // La hauteur des cellules est égale à leur largeur. Pour obtenir leur largeur, on divise par 4 la largeur de l'écran en pixel car il y a 4 cases par ligne
             //Cette largeur d'écran a été calculée dans la GameBoardActivity et transmise via le constructeur
             val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screen / sCount)
-            itemView.song_card_image.layoutParams = layoutParams
-            itemView.song_card_image.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            songCardImage.layoutParams = layoutParams
+            songCardImage.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
             if (card.discovered || card.discovered2) {
-                if (card.discovered)itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
-                if (card.discovered2) itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPlayer2))
+                if (card.discovered) songCardImage.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent))
+                if (card.discovered2) songCardImage.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPlayer2))
             } else if (card.checked) {
-                itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
+                songCardImage.setBackgroundColor(ContextCompat.getColor(context, R.color.colorChecked))
             } else {
-                itemView.song_card_image.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                songCardImage.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
             }
         }
 

@@ -14,5 +14,12 @@
     <string name="normal">Medium</string>
     <string name="hard">Hard</string>
     <string name="impossible">Impossible!</string>
+    <string name="rate_title">Please rate my app!</string>
+    <string name="rate_message">Sound Memory is a free game with no ads.
+        Support us by rating it on the Play Store. This message will no longer appear afterwards.
+        Thank you :-)</string>
+    <string name="rate_positive">Rate it now!</string>
+    <string name="rate_later">Later</string>
+
 
 </resources>

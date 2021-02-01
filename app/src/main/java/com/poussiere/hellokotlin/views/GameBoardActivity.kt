@@ -14,56 +14,51 @@ package com.poussiere.hellokotlin.views
         contact us : von.linnasta@gmail.com
 */
 
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.graphics.Rect
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import android.view.View
 import com.poussiere.hellokotlin.R
 import com.poussiere.hellokotlin.databinding.ActivityGameBinding
+import com.poussiere.hellokotlin.utils.setFullScreen
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_game.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHandler {
 
-    /**
-     * Injected ViewModel
-     */
-    private val gameViewModel: GameBoardViewModel by viewModel()
 
-    /**
-     * A disposable to dispose of observers
-     */
+    private val gameViewModel: GameBoardViewModel by viewModel()
     private val disposables = CompositeDisposable()
+    private lateinit var binding: ActivityGameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //Set databinding
-        val binding = DataBindingUtil.setContentView<ActivityGameBinding>(this,
+        binding = DataBindingUtil.setContentView<ActivityGameBinding>(this,
                 R.layout.activity_game)
         binding.viewModel = gameViewModel
 
         gameViewModel.setGameBoard()
 
-        //Configure recycler view in GrilLayout
-        game_board.setHasFixedSize(true)
+        //Configure recycler view in GridLayout
+        binding.gameBoard.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this@GameBoardActivity, gameViewModel.getSpanCount())
-        game_board.layoutManager = gridLayoutManager
+        binding.gameBoard.layoutManager = gridLayoutManager
         gameViewModel.myRecyclerViewAdapter = MyRecyclerViewAdapter(gameViewModel.cardTab,gameViewModel.getSpanCount(), this, getScreenWidth())
-        game_board.adapter=gameViewModel.myRecyclerViewAdapter
+        binding.gameBoard.adapter=gameViewModel.myRecyclerViewAdapter
 
-        home_img.setOnClickListener {
+        binding.homeImg.setOnClickListener {
             onBackPressed()
         }
         disposables.add(
                 gameViewModel.isGameFinished.onChange.subscribe{
-                    home_img.visibility = View.VISIBLE
+                    binding.homeImg.visibility = View.VISIBLE
                 }
         )
-        home_img.visibility = View.GONE
+        binding.homeImg.visibility = View.GONE
     }
 
     override fun doSomethingFromActivityWhenClick(index: Int) {
@@ -86,12 +81,7 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
     override fun onResume() {
         super.onResume()
         //Make app full screen
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+        setFullScreen()
     }
     override fun onPause() {
         if (gameViewModel.player.mediaPlayer.isPlaying){
@@ -108,10 +98,10 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
     override fun onBackPressed() {
         super.onBackPressed()
        // gameViewModel.setGameBoard()
-        player_tv.visibility = View.INVISIBLE
+        binding.playerTv.visibility = View.INVISIBLE
     }
 
-    fun getScreenWidth(): Int {
+    private fun getScreenWidth(): Int {
         val decorView = window.decorView
         val r = Rect()
         decorView.getWindowVisibleDisplayFrame(r)
