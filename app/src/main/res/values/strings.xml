@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Sound Memory</string>
-    <string name="sound">SOUND</string>
-    <string name="memory">MEMORY</string>
+    <string name="app_name" translatable="false">Sound Memory</string>
+    <string name="sound" translatable="false">SOUND</string>
+    <string name="memory" translatable="false">MEMORY</string>
     <string name="main_text_view_content">PLAY</string>
     <string name="un_joueur">1 player</string>
     <string name="deux_joueurs">2 players</string>
@@ -20,6 +20,5 @@
         Thank you :-)</string>
     <string name="rate_positive">Rate it now!</string>
     <string name="rate_later">Later</string>
-
 
 </resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "main_text_view_content">JUGAR</string>
+    <string name = "un_joueur">1 jugador</string>
+    <string name = "deux_joueurs">2 jugadores</string>
+    <string name = "player_1">Jugador 1</string>
+    <string name = "player_2">Jugador 2</string>
+    <string name = "player_1_wins">¡El jugador 1 gana!</string>
+    <string name = "player_2_wins">¡El jugador 2 gana!</string>
+    <string name = "egality">¡Empate!</string>
+    <string name = "easy">Fácil</string>
+    <string name = "normal">Normal</string>
+    <string name = "hard">Difícil</string>
+    <string name = "impossible">¡Imposible!</string>
+    <string name = "rate_title">¡Califica mi aplicación!</string>
+    <string name = "rate_message">Sound Memory es un juego gratuito sin anuncios.
+        Ayúdanos dando tu opinión en Play Store.
+        Este mensaje ya no aparecerá una vez hecho esto. Gracias :-)</string>
+    <string name = "rate_positive">¡Califica ahora!</string>
+    <string name = "rate_later">Más tarde</string>
+
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "main_text_view_content">ИГРАТЬ</string>
+    <string name = "un_joueur">1 игрок</string>
+    <string name = "deux_joueurs">2 игрока</string>
+    <string name = "player_1">Игрок 1</string>
+    <string name = "player_2">Игрок 2</string>
+    <string name = "player_1_wins">Игрок 1 побеждает!</string>
+    <string name = "player_2_wins">Игрок 2 побеждает!</string>
+    <string name = "egality">Ничья!</string>
+    <string name = "easy">Легко</string>
+    <string name = "normal">Нормальный</string>
+    <string name = "hard">Сложно</string>
+    <string name = "impossible">Невозможно!</string>
+    <string name = "rate_title">Оцените мое приложение!</string>
+    <string name = "rate_message">Sound Memory - бесплатная игра без рекламы.
+        Помогите нам, поделившись своим мнением о Play Store.
+        Когда это будет сделано, это сообщение больше не будет появляться. Спасибо :-)</string>
+    <string name = "rate_positive">Оцените сейчас!</string>
+    <string name = "rate_later">Позже</string>
+</resources>

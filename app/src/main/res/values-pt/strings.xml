@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "main_text_view_content">JOGAR</string>
+    <string name = "un_joueur">1 jogador</string>
+    <string name = "deux_joueurs">2 jogadores</string>
+    <string name = "player_1">Jogador 1</string>
+    <string name = "player_2">Jogador 2</string>
+    <string name = "player_1_wins">Jogador 1 vence!</string>
+    <string name = "player_2_wins">Jogador 2 vence!</string>
+    <string name = "egality">Empate!</string>
+    <string name = "easy">Fácil</string>
+    <string name = "normal">Normal</string>
+    <string name = "hard">Difícil</string>
+    <string name = "impossible">Impossível!</string>
+    <string name = "rate_title">Avalie meu aplicativo!</string>
+    <string name = "rate_message">Memória de som é um jogo grátis sem anúncios.
+        Ajude-nos dando sua opinião sobre a Play Store.
+        Esta mensagem não aparecerá mais quando isso for feito. Obrigado :-)</string>
+    <string name = "rate_positive">Avalie agora!</string>
+    <string name = "rate_later">Mais tarde</string>
+
+
+</resources>
