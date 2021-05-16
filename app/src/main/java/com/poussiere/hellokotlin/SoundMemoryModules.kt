@@ -13,9 +13,9 @@ import org.koin.dsl.module.module
  * Modules for dependency injection
  */
 val soundMemoryModules = module {
-    single { SoundHelper(get()) }
-    single { CardGame() }
-    single { CardsRepository(get()) }
+    //factory { SoundHelper(get()) }
+    factory { CardGame() }
+    factory { CardsRepository(get()) }
     single { SharedPreferencesHelper(get())}
     viewModel { HomeViewModel(get(), get()) }
     viewModel { GameBoardViewModel(get(), get(), get()) }

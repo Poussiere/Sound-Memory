@@ -70,11 +70,11 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
         previousIndex = index
 
         player.prepareSoundFile(cardTab[index].song)
-        player.mediaPlayer.prepareAsync()
-        player.mediaPlayer.setOnPreparedListener {
-            player.mediaPlayer.start()
+        player.mediaPlayer?.prepareAsync()
+        player.mediaPlayer?.setOnPreparedListener {
+            player.mediaPlayer?.start()
 
-            player.mediaPlayer.setOnCompletionListener {
+            player.mediaPlayer?.setOnCompletionListener {
                 player.resetPlayer()
                 firstCard = false
                 songIsPlaying = false
@@ -95,11 +95,11 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
         myRecyclerViewAdapter?.notifyItemChanged(index)
 
         player.prepareSoundFile(cardTab[actualIndex].song)
-        player.mediaPlayer.prepareAsync()
-        player.mediaPlayer.setOnPreparedListener {
-            player.mediaPlayer.start()
+        player.mediaPlayer?.prepareAsync()
+        player.mediaPlayer?.setOnPreparedListener {
+            player.mediaPlayer?.start()
 
-            player.mediaPlayer.setOnCompletionListener {
+            player.mediaPlayer?.setOnCompletionListener {
                 player.resetPlayer()
 
                 if (cardTab[previousIndex].id == cardTab[actualIndex].id) {
@@ -139,12 +139,12 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
         myRecyclerViewAdapter?.notifyItemChanged(index)
 
         player.prepareSoundFile(cardTab[actualIndex].song)
-        player.mediaPlayer.prepareAsync()
-        player.mediaPlayer.setOnPreparedListener {
-            player.mediaPlayer.start()
+        player.mediaPlayer?.prepareAsync()
+        player.mediaPlayer?.setOnPreparedListener {
+            player.mediaPlayer?.start()
 
 
-            player.mediaPlayer.setOnCompletionListener {
+            player.mediaPlayer?.setOnCompletionListener {
 
                 player.resetPlayer()
 
@@ -207,10 +207,4 @@ class GameBoardViewModel(private val prefs: SharedPreferencesHelper,
             }
         }
     }
-/*
-    fun screenWidth(): Int {
-        val displayMetrics = applicationContext.resources.displayMetrics
-        return displayMetrics.widthPixels
-    }
-    */
 }

@@ -22,24 +22,24 @@ import com.poussiere.hellokotlin.SoundMemoryApplication
 
 class SoundHelper(private val context: Context) {
 
-    val mediaPlayer: MediaPlayer = MediaPlayer()
+    var mediaPlayer: MediaPlayer? = MediaPlayer()
 
     fun prepareSoundFile(song: Int) {
         val songFile = context.resources?.openRawResourceFd(song) ?: return
-        mediaPlayer.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
+        mediaPlayer?.setDataSource(songFile.fileDescriptor, songFile.startOffset, songFile.length)
         songFile.close()
     }
 
     //to be called a the end of each song
     fun resetPlayer() {
-        mediaPlayer.stop()
-        mediaPlayer.reset()
+        mediaPlayer?.stop()
+        mediaPlayer?.reset()
     }
 
     //to be called when activity is destroyed
     fun releasePlayer() {
-        mediaPlayer.release()
-
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 }
 

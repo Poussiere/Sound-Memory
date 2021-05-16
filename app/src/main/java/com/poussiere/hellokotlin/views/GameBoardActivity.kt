@@ -17,6 +17,7 @@ package com.poussiere.hellokotlin.views
 import androidx.databinding.DataBindingUtil
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import android.view.View
@@ -46,6 +47,7 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
         //Configure recycler view in GridLayout
         binding.gameBoard.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this@GameBoardActivity, gameViewModel.getSpanCount())
+        Log.i("gameboard","span count : $(gameViewModel.getSpanCount())")
         binding.gameBoard.layoutManager = gridLayoutManager
         gameViewModel.myRecyclerViewAdapter = MyRecyclerViewAdapter(gameViewModel.cardTab,gameViewModel.getSpanCount(), this, getScreenWidth())
         binding.gameBoard.adapter=gameViewModel.myRecyclerViewAdapter
@@ -84,7 +86,7 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
         setFullScreen()
     }
     override fun onPause() {
-        if (gameViewModel.player.mediaPlayer.isPlaying){
+        if (gameViewModel.player.mediaPlayer != null && gameViewModel.player.mediaPlayer!!.isPlaying) {
             gameViewModel.player.resetPlayer()
         }
         super.onPause()

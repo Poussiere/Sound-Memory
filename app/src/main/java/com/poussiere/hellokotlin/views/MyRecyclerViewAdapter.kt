@@ -84,7 +84,7 @@ class MyRecyclerViewAdapter(cardList: MutableList<Card>, spanCount: Int, clickHa
         }
 
         override fun onClick(p0: View?) {
-            myClickHandler.doSomethingFromActivityWhenClick(adapterPosition)
+            myClickHandler.doSomethingFromActivityWhenClick(layoutPosition)
         }
     }
 }
