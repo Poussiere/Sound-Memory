@@ -29,7 +29,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHandler {
 
-
     private val gameViewModel: GameBoardViewModel by viewModel()
     private val disposables = CompositeDisposable()
     private lateinit var binding: ActivityGameBinding
@@ -99,7 +98,6 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
 
     override fun onBackPressed() {
         super.onBackPressed()
-       // gameViewModel.setGameBoard()
         binding.playerTv.visibility = View.INVISIBLE
     }
 
