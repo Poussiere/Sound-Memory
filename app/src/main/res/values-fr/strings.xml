@@ -17,6 +17,9 @@
         Ce message ne s\'affichera plus une fois que ce sera fait. Merci :-)</string>
     <string name="rate_positive">Noter tout de suite!</string>
     <string name="rate_later">Plus tard</string>
+    <string name="ok">OK</string>
+    <string name="info_title">Politique de confidentialité</string>
+    <string name="info_content">Nous nous engageons à ne collecter aucune donnée personnelle de quelque nature que ce soit.</string>
 
 
 </resources>

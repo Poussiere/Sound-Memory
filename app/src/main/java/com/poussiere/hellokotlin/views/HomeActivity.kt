@@ -17,9 +17,11 @@ package com.poussiere.hellokotlin.views
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ContextThemeWrapper
 import com.poussiere.hellokotlin.R
 import com.poussiere.hellokotlin.databinding.ActivityMainBinding
 import com.poussiere.hellokotlin.utils.SharedPreferencesHelper
@@ -34,18 +36,23 @@ class HomeActivity : AppCompatActivity() {
     private val homeViewModel: HomeViewModel by viewModel()
     private val prefs: SharedPreferencesHelper by inject()
     private val disposables = CompositeDisposable()
+    private lateinit var infoDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        instanciateInfoDialog()
+
         //Set databinding
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
-                R.layout.activity_main)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
+            this,
+            R.layout.activity_main
+        )
         binding.viewModel = homeViewModel
 
         val shouldShowRatePopup = prefs.launchCount() > 2 && !prefs.hasRated()
-        if (shouldShowRatePopup){
-           showRateDialog(prefs)
+        if (shouldShowRatePopup) {
+            showRateDialog(prefs)
         }
 
         /**
@@ -54,11 +61,26 @@ class HomeActivity : AppCompatActivity() {
         disposables.add(homeViewModel.onMainViewClick.subscribe { clicked ->
             if (clicked) {
                 val intent = Intent(this@HomeActivity, GameBoardActivity::class.java)
-                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this@HomeActivity,
-                        binding.mainTextView,
-                        ViewCompat.getTransitionName(binding.mainTextView)!!)
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this@HomeActivity,
+                    binding.mainTextView,
+                    ViewCompat.getTransitionName(binding.mainTextView)!!
+                )
                 prefs.incrementLaunchCount()
                 startActivity(intent, options.toBundle())
+            }
+        })
+
+        /**
+         * Display the privacy policy
+         */
+        disposables.add(homeViewModel.onInfoClick.subscribe { clicked ->
+            if (clicked) {
+                with(infoDialog) {
+                    if (!isShowing) {
+                        show()
+                    }
+                }
             }
         })
     }
@@ -72,5 +94,17 @@ class HomeActivity : AppCompatActivity() {
     override fun onDestroy() {
         disposables.dispose()
         super.onDestroy()
+    }
+
+    private fun instanciateInfoDialog() {
+        infoDialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCustom))
+            .setTitle(R.string.info_title)
+            .setMessage(R.string.info_content)
+            .setPositiveButton(R.string.ok) { dialog, _ ->
+                dialog.dismiss()
+            }.create()
+            .apply {
+                window?.attributes?.windowAnimations = R.style.DialogAnimation
+            }
     }
 }

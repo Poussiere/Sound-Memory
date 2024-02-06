@@ -20,5 +20,8 @@
         Grazie :-)</string>
     <string name="rate_positive">Valutalo ora!</string>
     <string name="rate_later">Più tardi</string>
+    <string name="ok">OK</string>
+    <string name="info_title">Informativa sulla privacy</string>
+    <string name="info_content">Ci impegniamo a non raccogliere dati personali di alcun tipo.</string>
 
 </resources>

@@ -8,9 +8,11 @@ import com.poussiere.hellokotlin.utils.SharedPreferencesHelper
 import com.poussiere.hellokotlin.utils.ViewModelField
 import io.reactivex.subjects.PublishSubject
 
-class HomeViewModel(val applicationContext: Context, val prefs: SharedPreferencesHelper) : ViewModel() {
+class HomeViewModel(val applicationContext: Context, val prefs: SharedPreferencesHelper) :
+    ViewModel() {
 
     val onMainViewClick = PublishSubject.create<Boolean>()
+    val onInfoClick = PublishSubject.create<Boolean>()
     val playerCountTextView = ViewModelField("")
     val difficultyTextView = ViewModelField("")
 
@@ -21,10 +23,17 @@ class HomeViewModel(val applicationContext: Context, val prefs: SharedPreference
         }
 
         when (prefs.getDifficulty()) {
-            Difficulty.EASY -> difficultyTextView.value = applicationContext.getString(R.string.easy)
-            Difficulty.MEDIUM -> difficultyTextView.value = applicationContext.getString(R.string.normal)
-            Difficulty.HARD -> difficultyTextView.value = applicationContext.getString(R.string.hard)
-            Difficulty.IMPOSSIBLE -> difficultyTextView.value = applicationContext.getString(R.string.impossible)
+            Difficulty.EASY -> difficultyTextView.value =
+                applicationContext.getString(R.string.easy)
+
+            Difficulty.MEDIUM -> difficultyTextView.value =
+                applicationContext.getString(R.string.normal)
+
+            Difficulty.HARD -> difficultyTextView.value =
+                applicationContext.getString(R.string.hard)
+
+            Difficulty.IMPOSSIBLE -> difficultyTextView.value =
+                applicationContext.getString(R.string.impossible)
         }
     }
 
@@ -34,6 +43,7 @@ class HomeViewModel(val applicationContext: Context, val prefs: SharedPreference
                 playerCountTextView.value = applicationContext.getString(R.string.deux_joueurs)
                 prefs.setPlayerCount(2)
             }
+
             2 -> {
                 playerCountTextView.value = applicationContext.getString(R.string.un_joueur)
                 prefs.setPlayerCount(1)
@@ -47,15 +57,18 @@ class HomeViewModel(val applicationContext: Context, val prefs: SharedPreference
                 difficultyTextView.value = applicationContext.getString(R.string.normal)
                 prefs.setDifficulty(Difficulty.MEDIUM)
             }
+
             Difficulty.MEDIUM -> {
                 difficultyTextView.value = applicationContext.getString(R.string.hard)
                 prefs.setDifficulty(Difficulty.HARD)
             }
+
             Difficulty.HARD -> {
                 difficultyTextView.value = applicationContext.getString(R.string.impossible)
                 prefs.setDifficulty(Difficulty.IMPOSSIBLE)
 
             }
+
             Difficulty.IMPOSSIBLE -> {
                 difficultyTextView.value = applicationContext.getString(R.string.easy)
                 prefs.setDifficulty(Difficulty.EASY)

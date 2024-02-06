@@ -18,6 +18,8 @@
         Esta mensagem não aparecerá mais quando isso for feito. Obrigado :-)</string>
     <string name = "rate_positive">Avalie agora!</string>
     <string name = "rate_later">Mais tarde</string>
-
+    <string name="ok">OK</string>
+    <string name="info_title">Política de Privacidade</string>
+    <string name="info_content">Nós nos comprometemos a não coletar quaisquer dados pessoais de qualquer tipo.</string>
 
 </resources>

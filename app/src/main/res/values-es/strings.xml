@@ -18,5 +18,8 @@
         Este mensaje ya no aparecerá una vez hecho esto. Gracias :-)</string>
     <string name = "rate_positive">¡Califica ahora!</string>
     <string name = "rate_later">Más tarde</string>
+    <string name="ok">OK</string>
+    <string name="info_title">Política de privacidad</string>
+    <string name="info_content">Nos comprometemos a no recopilar ningún dato personal de ningún tipo.</string>
 
 </resources>

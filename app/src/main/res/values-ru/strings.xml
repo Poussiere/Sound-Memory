@@ -18,4 +18,7 @@
         Когда это будет сделано, это сообщение больше не будет появляться. Спасибо :-)</string>
     <string name = "rate_positive">Оцените сейчас!</string>
     <string name = "rate_later">Позже</string>
+    <string name="ok">ОК</string>
+    <string name="info_title">Политика конфиденциальности</string>
+    <string name="info_content">Мы обязуемся не собирать какие-либо личные данные.</string>
 </resources>

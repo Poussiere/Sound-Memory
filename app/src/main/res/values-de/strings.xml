@@ -19,5 +19,8 @@
         Diese Meldung wird danach nicht mehr angezeigt. Danke :-)</string>
     <string name = "rate_positive">Jetzt bewerten!</string>
     <string name = "rate_later">Später</string>
+    <string name="ok">OK</string>
+    <string name="info_title">Datenschutzerklärung</string>
+    <string name="info_content">Wir verpflichten uns, keinerlei personenbezogene Daten jeglicher Art zu erheben.</string>
 
 </resources>
