@@ -25,7 +25,7 @@ import com.poussiere.hellokotlin.R
 import com.poussiere.hellokotlin.databinding.ActivityGameBinding
 import com.poussiere.hellokotlin.utils.setFullScreen
 import io.reactivex.disposables.CompositeDisposable
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnClickHandler {
 
@@ -37,27 +37,35 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
         super.onCreate(savedInstanceState)
 
         //Set databinding
-        binding = DataBindingUtil.setContentView<ActivityGameBinding>(this,
-                R.layout.activity_game)
+        binding = DataBindingUtil.setContentView<ActivityGameBinding>(
+            this,
+            R.layout.activity_game
+        )
         binding.viewModel = gameViewModel
 
         gameViewModel.setGameBoard()
 
         //Configure recycler view in GridLayout
         binding.gameBoard.setHasFixedSize(true)
-        val gridLayoutManager = GridLayoutManager(this@GameBoardActivity, gameViewModel.getSpanCount())
-        Log.i("gameboard","span count : $(gameViewModel.getSpanCount())")
+        val gridLayoutManager =
+            GridLayoutManager(this@GameBoardActivity, gameViewModel.getSpanCount())
+        Log.i("gameboard", "span count : $(gameViewModel.getSpanCount())")
         binding.gameBoard.layoutManager = gridLayoutManager
-        gameViewModel.myRecyclerViewAdapter = MyRecyclerViewAdapter(gameViewModel.cardTab,gameViewModel.getSpanCount(), this, getScreenWidth())
-        binding.gameBoard.adapter=gameViewModel.myRecyclerViewAdapter
+        gameViewModel.myRecyclerViewAdapter = MyRecyclerViewAdapter(
+            gameViewModel.cardTab,
+            gameViewModel.getSpanCount(),
+            this,
+            getScreenWidth()
+        )
+        binding.gameBoard.adapter = gameViewModel.myRecyclerViewAdapter
 
         binding.homeImg.setOnClickListener {
             onBackPressed()
         }
         disposables.add(
-                gameViewModel.isGameFinished.onChange.subscribe{
-                    binding.homeImg.visibility = View.VISIBLE
-                }
+            gameViewModel.isGameFinished.onChange.subscribe {
+                binding.homeImg.visibility = View.VISIBLE
+            }
         )
         binding.homeImg.visibility = View.GONE
     }
@@ -84,6 +92,7 @@ class GameBoardActivity : AppCompatActivity(), MyRecyclerViewAdapter.AdapterOnCl
         //Make app full screen
         setFullScreen()
     }
+
     override fun onPause() {
         if (gameViewModel.player.mediaPlayer != null && gameViewModel.player.mediaPlayer!!.isPlaying) {
             gameViewModel.player.resetPlayer()

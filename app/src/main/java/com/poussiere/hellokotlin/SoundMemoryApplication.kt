@@ -1,13 +1,20 @@
 package com.poussiere.hellokotlin
 
 import android.app.Application
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidFileProperties
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+
 
 class SoundMemoryApplication : Application() {
-    override fun onCreate(){
+    override fun onCreate() {
         super.onCreate()
-        // start Koin!
-        startKoin(this, listOf(soundMemoryModules))
-
+        startKoin {
+            androidLogger()
+            androidContext(this@SoundMemoryApplication)
+            androidFileProperties()
+            modules(listOf(soundMemoryModules))
+        }
     }
 }

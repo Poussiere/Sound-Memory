@@ -28,8 +28,8 @@ import com.poussiere.hellokotlin.utils.SharedPreferencesHelper
 import com.poussiere.hellokotlin.utils.setFullScreen
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
 import showRateDialog
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
 

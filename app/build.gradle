@@ -10,18 +10,19 @@ android {
         }
     }
 
-    compileSdkVersion 34
+    compileSdk 35
     defaultConfig {
         applicationId "com.poussiere.hellokotlin"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode 10
-        versionName "2.2.3"
+        versionName "2.3.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     buildFeatures {
         dataBinding true
+        viewBinding false
     }
 
     buildTypes {
@@ -31,14 +32,18 @@ android {
         }
     }
     namespace 'com.poussiere.hellokotlin'
+    compileOptions {
+        targetCompatibility "21"
+        sourceCompatibility "21"
+    }
+    buildToolsVersion '34.0.0'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //Dependency injection
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-android-scope:$koin_version"
-    implementation "org.koin:koin-android-viewmodel:$koin_version"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
     //View Model
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     //RX
